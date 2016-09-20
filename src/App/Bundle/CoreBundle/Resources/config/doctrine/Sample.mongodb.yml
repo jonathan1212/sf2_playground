@@ -1,0 +1,50 @@
+App\Bundle\CoreBundle\Document\Sample:
+  type: document
+  collection: sampleCollection
+  fields:
+    id:
+      id: true
+      type: object_id
+    image:
+      type: file
+      unique: true
+      options:
+        default: test
+    score:
+      type: int
+      unique: true
+    type:
+      type: boolean
+    funct:
+      type: bin_func
+    increment:
+      type: increment
+    key:
+      type: key
+    today:
+      type: timestamp
+    data:
+      type: raw
+    password:
+      type: hash
+      unique: true
+    name:
+      type: string
+    bin:
+      type: bin
+    bytearray:
+      type: bin_bytearray
+    bincustom:
+      type: bin_custom
+    md5:
+      type: bin_md5
+    uuid:
+      type: bin_uuid
+    object:
+      type: object_id
+  referenceMany:
+    association:
+      targetDocument: App\Bundle\CoreBundle\Document\Association
+      mappedBy: sample
+  discriminatorMap:
+    [App\Bundle\CoreBundle\Document\Sample]

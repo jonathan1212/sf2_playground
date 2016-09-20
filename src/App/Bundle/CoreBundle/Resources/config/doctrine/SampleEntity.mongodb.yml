@@ -1,0 +1,8 @@
+App\Bundle\CoreBundle\Document\SampleEntity:
+  type: document
+  fields:
+    id:
+      id: true
+      type: object_id
+    name:
+      type: string

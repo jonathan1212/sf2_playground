@@ -1,0 +1,70 @@
+parameters:
+    usertype.buyer: 1
+    entity.user.class: App\Bundle\CoreBundle\Entity\User
+
+services:
+#    app_core.example:
+#        class: App\Bundle\CoreBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+ 
+  snc_redis_cache_driver:
+       class: Doctrine\Common\Cache\RedisCache
+
+  app.core.aws.s3:
+      class: Aws\S3\S3Client
+      factory_class: Aws\S3\S3Client
+      factory_method: 'factory'
+      arguments:
+          -
+              region:   '%amazon_s3_region%'
+              version:  '2006-03-01'
+              key:      '%amazon_s3_key%'
+              secret:   '%amazon_s3_secret%'
+
+  security.logout_handler:
+        class: App\Bundle\CoreBundle\Security\LogoutHandler
+        public: public
+        arguments: ['@service_container']
+
+  app.core.user.manager:
+        class: Doctrine\ORM\EntityManager
+        factory_method: getManagerForClass
+        factory_service: doctrine
+        arguments: ['%entity.user.class%']
+
+  app.core.user.repository:
+        class: App\Bundle\CoreBundle\Repository\User
+        factory_method: getRepository
+        factory_service: app.core.user.manager
+        arguments: ['%entity.user.class%']
+
+  #user provider / security
+  app.webservice_user_provider:
+        class: App\Bundle\CoreBundle\Security\WebserviceUserProvider
+        arguments: ['@app.core.user.repository', '%usertype.buyer%']
+
+  app_core.security.authentication_handler:
+        class: App\Bundle\CoreBundle\Security\AuthenticationHandler
+        public: public
+        arguments:
+            - @router
+            - @session
+            - @service_container
+
+  app.api.oauth.frontend_extension:
+      class: App\Bundle\CoreBundle\Oauth\GrantExtension\FrontendGrantExtension
+      arguments: ['@app.core.user.repository', '@security.password_encoder']
+      tags:
+          - { name: fos_oauth_server.grant_extension, uri: 'http://mysymfony.local/frontend' }
+
+  # elastica
+  app_core.transformers.elastica.user:
+      class: App\Bundle\CoreBundle\Transformer\UserToElasticaTransformer
+
+  app_core.transformers.elasticaTouser:
+      class: App\Bundle\CoreBundle\Transformer\ElasticaToUserTransformer
+      arguments: ['@doctrine', '', {identifier:userId}]
+      calls:
+        - [setPropertyAccessor, ['@fos_elastica.property_accessor']]
+      tags:
+        - { name: fos_elastica.elastica_to_model_transformer, type: user, index: app_dev }

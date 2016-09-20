@@ -1,0 +1,111 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>User list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Userid</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Contactnumber</th>
+                <th>Dateadded</th>
+                <th>Datelastmodified</th>
+                <th>Isactive</th>
+                <th>Ismobileverified</th>
+                <th>Isemailverified</th>
+                <th>Logincount</th>
+                <th>Gender</th>
+                <th>Birthdate</th>
+                <th>Lastlogindate</th>
+                <th>Lastlogoutdate</th>
+                <th>Lastloginip</th>
+                <th>Lastfailedlogindate</th>
+                <th>Failedlogincount</th>
+                <th>Nickname</th>
+                <th>Slug</th>
+                <th>Isbanned</th>
+                <th>Lockduration</th>
+                <th>Bantypeid</th>
+                <th>Usertype</th>
+                <th>Forgotpasswordtoken</th>
+                <th>Forgotpasswordtokenexpiration</th>
+                <th>Forgotpasswordcode</th>
+                <th>Forgotpasswordcodeexpiration</th>
+                <th>Referralcode</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Slugchanged</th>
+                <th>Reactivationcode</th>
+                <th>Accountid</th>
+                <th>Tin</th>
+                <th>Issocialmedia</th>
+                <th>Registrationtype</th>
+                <th>Consecutivelogincount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('user_show', { 'id': entity.userId }) }}">{{ entity.userId }}</a></td>
+                <td>{{ entity.password }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.contactNumber }}</td>
+                <td>{% if entity.dateAdded %}{{ entity.dateAdded|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateLastModified %}{{ entity.dateLastModified|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.isActive }}</td>
+                <td>{{ entity.isMobileVerified }}</td>
+                <td>{{ entity.isEmailVerified }}</td>
+                <td>{{ entity.loginCount }}</td>
+                <td>{{ entity.gender }}</td>
+                <td>{% if entity.birthdate %}{{ entity.birthdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.lastLoginDate %}{{ entity.lastLoginDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.lastLogoutDate %}{{ entity.lastLogoutDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.lastLoginIp }}</td>
+                <td>{% if entity.lastFailedLoginDate %}{{ entity.lastFailedLoginDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.failedLoginCount }}</td>
+                <td>{{ entity.nickname }}</td>
+                <td>{{ entity.slug }}</td>
+                <td>{{ entity.isBanned }}</td>
+                <td>{% if entity.lockDuration %}{{ entity.lockDuration|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.banTypeId }}</td>
+                <td>{{ entity.userType }}</td>
+                <td>{{ entity.forgotPasswordToken }}</td>
+                <td>{% if entity.forgotPasswordTokenExpiration %}{{ entity.forgotPasswordTokenExpiration|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.forgotPasswordCode }}</td>
+                <td>{% if entity.forgotPasswordCodeExpiration %}{{ entity.forgotPasswordCodeExpiration|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.referralCode }}</td>
+                <td>{{ entity.firstName }}</td>
+                <td>{{ entity.lastName }}</td>
+                <td>{{ entity.slugChanged }}</td>
+                <td>{{ entity.reactivationcode }}</td>
+                <td>{{ entity.accountId }}</td>
+                <td>{{ entity.tin }}</td>
+                <td>{{ entity.isSocialMedia }}</td>
+                <td>{{ entity.registrationType }}</td>
+                <td>{{ entity.consecutiveLoginCount }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('user_show', { 'id': entity.userId }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('user_edit', { 'id': entity.userId }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('user_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

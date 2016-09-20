@@ -1,0 +1,19 @@
+elastic_show:
+    path:     /
+    defaults: { _controller: "AppCoreBundle:Elastic:index" }
+
+elastic_search:
+    path:     /search
+    defaults: { _controller: "AppCoreBundle:Elastic:search" }
+
+elastic_search2:
+    path:     /finder
+    defaults: { _controller: "AppCoreBundle:Elastic:finder" }
+
+elastic_insert:
+    path:     /insert
+    defaults: { _controller: "AppCoreBundle:Elastic:insert" }
+
+elastic_postload:
+    path:     /postLoad
+    defaults: { _controller: "AppCoreBundle:Elastic:postLoad" }

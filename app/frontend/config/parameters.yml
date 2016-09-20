@@ -1,0 +1,9 @@
+imports:
+    - { resource: "../../config/parameters.yml" }
+
+parameters:
+    secret2: ThisTokenIsNotSoSecretChangeIt
+    # exaple
+    tokens:
+        client1: pass1
+        client2: pass2

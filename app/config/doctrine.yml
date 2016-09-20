@@ -1,0 +1,152 @@
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:   pdo_mysql
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
+                # if using pdo_sqlite as your database driver:
+                #   1. add the path in parameters.yml
+                #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+                #   2. Uncomment database_path in parameters.yml.dist
+                #   3. Uncomment next line:
+                #     path:     "%database_path%"
+            yilinker:
+                driver:   pdo_mysql
+                host:     "%database_host_yilinker%"
+                port:     "%database_port_yilinker%"
+                dbname:   "%database_name_yilinker%"
+                user:     "%database_user_yilinker%"
+                password: "%database_password_yilinker%"
+                charset:  UTF8
+
+    # orm:
+    #     auto_generate_proxy_classes: "%kernel.debug%"
+    #     naming_strategy: doctrine.orm.naming_strategy.underscore
+    #     auto_mapping: true
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        #naming_strategy: doctrine.orm.naming_strategy.underscore
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    AppCoreBundle:
+                        type: yml
+                        dir: %kernel.root_dir%/../../src/App/Bundle/CoreBundle/Resources/config/doctrine
+                        prefix: App\Bundle\CoreBundle\Entity
+                        alias: AppCoreBundle
+                metadata_cache_driver:
+                    type: service
+                    id: snc_redis.doctrine
+                query_cache_driver:
+                    type: service
+                    id: snc_redis.doctrine
+                result_cache_driver:
+                    type: service
+                    id: snc_redis.doctrine
+                second_level_cache:
+                        region_cache_driver:
+                             type: service
+                             id: snc_redis_cache_driver
+                        region_lock_lifetime: 60
+                        log_enabled: true
+                        region_lifetime: 300
+                        enabled: true
+                        regions:
+                            region_video:
+                                lifetime: 300
+                                cache_driver:
+                                    type: service
+                                    id: snc_redis_cache_driver
+                            region_comment:
+                                lifetime: 60
+                                cache_driver:
+                                    type: service
+                                    id: snc_redis_cache_driver
+                            region_user:
+                                lifetime: 10
+                                cache_driver:
+                                    type: service
+                                    id: snc_redis_cache_driver
+                            region_category:
+                                lifetime: 900
+                                cache_driver:
+                                    type: service
+                                    id: snc_redis_cache_driver
+            yilinker:
+                connection: yilinker
+                #auto_mapping: true
+                mappings:
+                    Yilinker:
+                        type: yml
+                        dir: %kernel.root_dir%/../../src/App/Bundle/CoreBundle/Resources/config/yilinker
+                        prefix: App\Bundle\CoreBundle\Entity\Yilinker
+                        alias: Yilinker
+                        is_bundle: false
+                dql:
+                    string_functions:
+                        field: DoctrineExtensions\Query\Mysql\Field
+                        group_concat: DoctrineExtensions\Query\Mysql\GroupConcat
+                        match_against: DoctrineExtensions\Query\Mysql\MatchAgainst
+                        date_format: DoctrineExtensions\Query\Mysql\DateFormat
+                # metadata_cache_driver:
+                #     type: service
+                #     id: snc_redis.doctrine
+                # query_cache_driver:
+                #     type: service
+                #     id: snc_redis.doctrine
+                # result_cache_driver:
+                #     type: service
+                #     id: snc_redis.doctrine
+                # second_level_cache:
+                #         region_cache_driver:
+                #              type: service
+                #              id: snc_redis_cache_driver
+                #         region_lock_lifetime: 60
+                #         log_enabled: true
+                #         region_lifetime: 300
+                #         enabled: true
+                #         regions:
+                #             region_video:
+                #                 lifetime: 300
+                #                 cache_driver:
+                #                     type: service
+                #                     id: snc_redis_cache_driver
+                #             region_comment:
+                #                 lifetime: 60
+                #                 cache_driver:
+                #                     type: service
+                #                     id: snc_redis_cache_driver
+                #             region_user:
+                #                 lifetime: 10
+                #                 cache_driver:
+                #                     type: service
+                #                     id: snc_redis_cache_driver
+                #             region_category:
+                #                 lifetime: 900
+                #                 cache_driver:
+                #                     type: service
+                #                     id: snc_redis_cache_driver
+            # cached:
+            #     mappings:
+            #         AppCoreBundle:
+            #             type: yml
+            #             dir: %kernel.root_dir%/../../src/App/Bundle/CoreBundle/Entity
+            #             prefix: App\Bundle\CoreBundle\Entity
+            #             alias: AppCoreBundle
+            #     metadata_cache_driver:
+            #         type: service
+            #         id: snc_redis.sncredis
+            #     query_cache_driver:
+            #         type: service
+            #         id: snc_redis.sncredis
+            #     result_cache_driver:
+            #         type: service
+            #         id: snc_redis.sncredis

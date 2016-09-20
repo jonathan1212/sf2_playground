@@ -1,0 +1,243 @@
+App\Bundle\CoreBundle\Entity\User:
+    type: entity
+    table: User
+    id:
+        userId:
+            id: true
+            type: integer
+            options:
+                unsigned: false
+            column: user_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        password:
+            type: string
+            length: 255
+            options:
+                fixed: false
+            nullable: false
+        email:
+            type: string
+            length: 60
+            options:
+                fixed: false
+            nullable: true
+        contactNumber:
+            type: string
+            length: 60
+            options:
+                fixed: false
+            nullable: true
+            column: contact_number
+        primaryImageId:
+            type: integer
+            options:
+                unsigned: false
+            nullable: true
+            column: primary_image_id
+        dateAdded:
+            type: datetime
+            nullable: true
+            column: date_added
+        dateLastModified:
+            type: datetime
+            nullable: true
+            column: date_last_modified
+        isActive:
+            type: boolean
+            options:
+                default: '1'
+            nullable: true
+            column: is_active
+        isMobileVerified:
+            type: boolean
+            options:
+                default: '0'
+            nullable: true
+            column: is_mobile_verified
+        isEmailVerified:
+            type: boolean
+            options:
+                default: '0'
+            nullable: true
+            column: is_email_verified
+        loginCount:
+            type: integer
+            options:
+                unsigned: false
+                default: '0'
+            nullable: true
+            column: login_count
+        gender:
+            type: string
+            length: 1
+            options:
+                fixed: false
+                default: M
+            nullable: true
+        birthdate:
+            type: datetime
+            nullable: true
+        lastLoginDate:
+            type: datetime
+            nullable: true
+            column: last_login_date
+        lastLogoutDate:
+            type: datetime
+            nullable: true
+            column: last_logout_date
+        lastLoginIp:
+            type: string
+            length: 45
+            options:
+                fixed: false
+            nullable: true
+            column: last_login_ip
+        lastFailedLoginDate:
+            type: datetime
+            nullable: true
+            column: last_failed_login_date
+        failedLoginCount:
+            type: integer
+            options:
+                unsigned: false
+            nullable: true
+            column: failed_login_count
+        nickname:
+            type: string
+            length: 45
+            options:
+                fixed: false
+            nullable: true
+        slug:
+            type: string
+            length: 45
+            options:
+                fixed: false
+            nullable: true
+        isBanned:
+            type: boolean
+            options:
+                default: '0'
+            nullable: true
+            column: is_banned
+        lockDuration:
+            type: datetime
+            nullable: true
+            column: lock_duration
+        banTypeId:
+            type: integer
+            options:
+                unsigned: false
+            nullable: true
+            column: ban_type_id
+        userType:
+            type: integer
+            options:
+                unsigned: false
+                default: '0'
+            nullable: false
+            column: user_type
+        forgotPasswordToken:
+            type: string
+            length: 255
+            options:
+                fixed: false
+            nullable: true
+            column: forgot_password_token
+        forgotPasswordTokenExpiration:
+            type: datetime
+            nullable: true
+            column: forgot_password_token_expiration
+        forgotPasswordCode:
+            type: string
+            length: 255
+            options:
+                fixed: false
+            nullable: true
+            column: forgot_password_code
+        forgotPasswordCodeExpiration:
+            type: datetime
+            nullable: true
+            column: forgot_password_code_expiration
+        referralCode:
+            type: string
+            length: 255
+            options:
+                fixed: false
+            nullable: true
+            column: referral_code
+        firstName:
+            type: string
+            length: 512
+            options:
+                fixed: false
+            nullable: true
+            column: first_name
+        lastName:
+            type: string
+            length: 512
+            options:
+                fixed: false
+            nullable: true
+            column: last_name
+        slugChanged:
+            type: boolean
+            options:
+                default: '0'
+            nullable: true
+            column: slug_changed
+        primaryCoverPhotoId:
+            type: integer
+            options:
+                unsigned: false
+            nullable: true
+            column: primary_cover_photo_id
+        reactivationcode:
+            type: string
+            length: 255
+            options:
+                fixed: false
+            nullable: true
+            column: reactivationCode
+        accountId:
+            type: integer
+            options:
+                unsigned: false
+            nullable: true
+            column: account_id
+        tin:
+            type: string
+            length: 255
+            options:
+                fixed: false
+                default: '0'
+            nullable: true
+        isSocialMedia:
+            type: boolean
+            options:
+                default: '0'
+            nullable: true
+            column: is_social_media
+        registrationType:
+            type: smallint
+            options:
+                unsigned: false
+                default: '0'
+            nullable: false
+            column: registration_type
+        countryId:
+            type: integer
+            options:
+                unsigned: false
+            nullable: true
+            column: country_id
+        consecutiveLoginCount:
+            type: integer
+            options:
+                unsigned: false
+                default: '0'
+            nullable: false
+            column: consecutive_login_count
+    lifecycleCallbacks: {  }

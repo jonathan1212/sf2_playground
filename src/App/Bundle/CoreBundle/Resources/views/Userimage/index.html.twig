@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Userimage list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Userimageid</th>
+                <th>Userid</th>
+                <th>Imagelocation</th>
+                <th>Ishidden</th>
+                <th>Dateadded</th>
+                <th>Userimagetype</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('userimage_show', { 'id': entity.userImageId }) }}">{{ entity.userImageId }}</a></td>
+                <td>{{ entity.userId }}</td>
+                <td>{{ entity.imageLocation }}</td>
+                <td>{{ entity.isHidden }}</td>
+                <td>{% if entity.dateAdded %}{{ entity.dateAdded|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.userImageType }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('userimage_show', { 'id': entity.userImageId }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('userimage_edit', { 'id': entity.userImageId }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('userimage_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

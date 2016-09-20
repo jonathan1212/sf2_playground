@@ -1,0 +1,8 @@
+brand_index:
+    path:     /brand
+    defaults: { _controller: "AppCoreBundle:Brand:index" }
+
+bar_index:
+    path:     /brand/bar
+    defaults: { _controller: "AppCoreBundle:Brand:bar" }
+

@@ -1,0 +1,30 @@
+knp_gaufrette:
+    adapters:
+        foo:
+            local:
+                directory: %kernel.root_dir%/../../web
+
+        # S3
+        profile_photos:
+            aws_s3:
+                service_id: 'app.core.aws.s3'
+                bucket_name: %amazon_s3_bucket_name%
+                options:
+                    directory: 'web'
+    filesystems:
+        bar:
+            adapter:    foo
+            alias:      foo_filesystem
+        s3:
+            adapter:    profile_photos
+            alias:      profile_photos_filesystem
+
+    # adapters:
+    #     photo_storage:
+    #         local:
+    #             directory:  %kernel.root_dir%/../../web
+    #             create:     true
+    # filesystems:
+    #     photo_storage:
+    #         adapter:    photo_storage
+    #         alias:      photo_storage_filesystem

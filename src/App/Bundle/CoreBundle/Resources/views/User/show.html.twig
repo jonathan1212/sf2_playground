@@ -1,0 +1,172 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>User</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Userid</th>
+                <td>{{ entity.userId }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ entity.password }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+            <tr>
+                <th>Contactnumber</th>
+                <td>{{ entity.contactNumber }}</td>
+            </tr>
+            <tr>
+                <th>Dateadded</th>
+                <td>{{ entity.dateAdded|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datelastmodified</th>
+                <td>{{ entity.dateLastModified|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{{ entity.isActive }}</td>
+            </tr>
+            <tr>
+                <th>Ismobileverified</th>
+                <td>{{ entity.isMobileVerified }}</td>
+            </tr>
+            <tr>
+                <th>Isemailverified</th>
+                <td>{{ entity.isEmailVerified }}</td>
+            </tr>
+            <tr>
+                <th>Logincount</th>
+                <td>{{ entity.loginCount }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ entity.gender }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{{ entity.birthdate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Lastlogindate</th>
+                <td>{{ entity.lastLoginDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Lastlogoutdate</th>
+                <td>{{ entity.lastLogoutDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Lastloginip</th>
+                <td>{{ entity.lastLoginIp }}</td>
+            </tr>
+            <tr>
+                <th>Lastfailedlogindate</th>
+                <td>{{ entity.lastFailedLoginDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Failedlogincount</th>
+                <td>{{ entity.failedLoginCount }}</td>
+            </tr>
+            <tr>
+                <th>Nickname</th>
+                <td>{{ entity.nickname }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ entity.slug }}</td>
+            </tr>
+            <tr>
+                <th>Isbanned</th>
+                <td>{{ entity.isBanned }}</td>
+            </tr>
+            <tr>
+                <th>Lockduration</th>
+                <td>{{ entity.lockDuration|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Bantypeid</th>
+                <td>{{ entity.banTypeId }}</td>
+            </tr>
+            <tr>
+                <th>Usertype</th>
+                <td>{{ entity.userType }}</td>
+            </tr>
+            <tr>
+                <th>Forgotpasswordtoken</th>
+                <td>{{ entity.forgotPasswordToken }}</td>
+            </tr>
+            <tr>
+                <th>Forgotpasswordtokenexpiration</th>
+                <td>{{ entity.forgotPasswordTokenExpiration|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Forgotpasswordcode</th>
+                <td>{{ entity.forgotPasswordCode }}</td>
+            </tr>
+            <tr>
+                <th>Forgotpasswordcodeexpiration</th>
+                <td>{{ entity.forgotPasswordCodeExpiration|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Referralcode</th>
+                <td>{{ entity.referralCode }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ entity.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ entity.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Slugchanged</th>
+                <td>{{ entity.slugChanged }}</td>
+            </tr>
+            <tr>
+                <th>Reactivationcode</th>
+                <td>{{ entity.reactivationcode }}</td>
+            </tr>
+            <tr>
+                <th>Accountid</th>
+                <td>{{ entity.accountId }}</td>
+            </tr>
+            <tr>
+                <th>Tin</th>
+                <td>{{ entity.tin }}</td>
+            </tr>
+            <tr>
+                <th>Issocialmedia</th>
+                <td>{{ entity.isSocialMedia }}</td>
+            </tr>
+            <tr>
+                <th>Registrationtype</th>
+                <td>{{ entity.registrationType }}</td>
+            </tr>
+            <tr>
+                <th>Consecutivelogincount</th>
+                <td>{{ entity.consecutiveLoginCount }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('user') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('user_edit', { 'id': entity.userId }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

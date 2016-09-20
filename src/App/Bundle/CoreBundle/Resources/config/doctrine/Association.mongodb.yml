@@ -1,0 +1,14 @@
+App\Bundle\CoreBundle\Document\Association:
+  type: document
+  fields:
+    id:
+      id: true
+      type: object_id
+    sample_id:
+      type: object_id
+    name:
+      type: string
+  referenceOne:
+    sample:
+      targetDocument: App\Bundle\CoreBundle\Document\Sample
+      inversedBy: association

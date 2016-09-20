@@ -1,0 +1,181 @@
+App\Bundle\CoreBundle\Entity\OrderProduct:
+    type: entity
+    table: OrderProduct
+    repositoryClass: App\Bundle\CoreBundle\Repository\OrderProductRepository
+    id:
+        orderProductId:
+            type: bigint
+            nullable: false
+            unsigned: true
+            id: true
+            column: order_product_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        quantity:
+            type: integer
+            nullable: true
+            unsigned: false
+        returnableQuantity:
+            type: integer
+            nullable: true
+            unsigned: false
+        totalPrice:
+            type: decimal
+            nullable: true
+            precision: 12
+            scale: 4
+            column: total_price
+        unitPrice:
+            type: decimal
+            nullable: true
+            precision: 12
+            scale: 4
+            column: unit_price
+        origPrice:
+            type: decimal
+            nullable: true
+            precision: 12
+            scale: 4
+            column: orig_price
+        productName:
+            type: string
+            length: 1024
+            fixed: false
+            nullable: true
+            column: product_name
+        paymentMethodCharge:
+            type: decimal
+            precision: 12
+            scale: 4
+            nullable: true
+            column: payment_method_charge
+        yilinkerCharge:
+            type: decimal
+            precision: 12
+            scale: 4
+            nullable: true
+            column: yilinker_charge
+        handlingFee:
+            type: decimal
+            precision: 12
+            scale: 4
+            nullable: true
+            column: handling_fee
+        shippingFee:
+            type: decimal
+            precision: 12
+            scale: 4
+            nullable: true
+            column: shipping_fee
+            options:
+                default: 0.00
+        additionalCost:
+            type: decimal
+            precision: 12
+            scale: 4
+            nullable: true
+            options:
+                default: '0'
+            column: additional_cost
+        net:
+            type: decimal
+            precision: 12
+            scale: 4
+            column: net
+            nullable: true
+        commission:
+            type: decimal
+            precision: 12
+            scale: 4
+            column: commission
+            nullable: true
+            options:
+                default: '0'
+        attributes:
+            type: string
+            nullable: true
+            column: attributes
+            length: 1024
+        dateAdded:
+            type: datetime
+            nullable: true
+            column: date_added
+        lastDateModified:
+            type: datetime
+            nullable: true
+            column: last_date_modified
+        sku:      
+            type: string
+            column: sku
+            options:
+                default: ""
+        weight:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            options:
+                default: '0'
+        length:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            options:
+                default: '0'
+        width:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            options:
+                default: '0'
+        height:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            options:
+                default: '0'
+        description:
+            type: text
+            nullable: true
+        shortDescription:
+            column: short_description
+            length: 1024
+            options:
+                default: ''
+        brandName:
+            column: brand_name
+            length: 255
+            options:
+                default: ''
+        manufacturerProductReference:
+            column: internal_product_reference
+            length: 255
+            options:
+                default: ''
+        isNotShippable:
+            type: boolean
+            column: is_not_shippable
+            options:
+                default: '0'
+        productId:
+            type: string
+            column: productId
+    manyToOne:
+        # product:
+        #     targetEntity: Product
+        #     inversedBy: orderProduct
+        #     joinColumn:
+        #         name: product_id
+        #         referencedColumnName: product_id
+        #     orphanRemoval: false
+        seller:
+            targetEntity: User
+            joinColumn:
+                name: seller_id
+                referencedColumnName: user_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

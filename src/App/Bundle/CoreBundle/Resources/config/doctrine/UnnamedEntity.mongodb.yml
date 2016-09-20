@@ -1,0 +1,25 @@
+App\Bundle\CoreBundle\Document\UnnamedEntity:
+  type: document
+  fields:
+    id:
+      id: true
+      type: object_id
+    countryid:
+      type: raw
+    start_date:
+      type: date
+    product:
+      type: key
+    address:
+      type: object_id
+  referenceOne:
+    prod:
+      targetDocument: UnnamedEntity
+      inversedBy: order
+  referenceMany:
+    order:
+      targetDocument: UnnamedEntity
+      mappedBy: prod
+  embedMany:
+    address:
+      targetDocument: UnnamedEntity2

@@ -1,0 +1,15 @@
+product_show:
+    path:     /product
+    defaults: { _controller: "AppCoreBundle:Product:index" }
+
+getProduct:
+    path:     /product/getProduct
+    defaults: { _controller: "AppCoreBundle:Product:getProduct" }  
+
+getEntity:
+    path:     /product/getEntity
+    defaults: { _controller: "AppCoreBundle:Product:getEntity" }
+
+withBrand:
+    path:     /product/withBrand
+    defaults: { _controller: "AppCoreBundle:Product:withBrand" }

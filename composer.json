@@ -1,0 +1,97 @@
+{
+    "name": "symfony/framework-standard-edition",
+    "license": "MIT",
+    "type": "project",
+    "description": "The \"Symfony Standard Edition\" distribution",
+    "autoload": {
+        "psr-4": {
+            "": "src/",
+            "SymfonyStandard\\": "app/SymfonyStandard/"
+         }
+    },
+    "require": {
+        "php": ">=5.3.9",
+        "symfony/symfony": "2.7.*",
+        "doctrine/orm": "^2.4.8",
+        "doctrine/doctrine-bundle": "~1.4",
+        
+        
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~4.0",
+        "sensio/framework-extra-bundle": "^3.0.2",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "doctrine/doctrine-migrations-bundle": "^1.0",
+
+        "doctrine/mongodb-odm": "~1.0",
+        "doctrine/mongodb-odm-bundle": "~3.0",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
+        
+        "friendsofsymfony/oauth-server-bundle": "1.4.*",
+        "friendsofsymfony/jsrouting-bundle": "~1.5.4",
+        "friendsofsymfony/elastica-bundle": "v3.1.6",
+        
+        
+        "stof/doctrine-extensions-bundle": "~1.1@dev",
+        "nesbot/carbon": "^1.20",
+        "symfony/serializer": "^2.7",
+        "hwi/oauth-bundle": "0.4.*@dev",
+        "beberlei/DoctrineExtensions": "~0.1",
+        "predis/predis": "^1.0",
+        "facebook/php-sdk-v4": "@stable",
+        "nelmio/api-doc-bundle": "^2.11.0",
+        "aws/aws-sdk-php": "2.6.*",
+        "knplabs/gaufrette": "dev-master",
+        "knplabs/knp-gaufrette-bundle": "dev-master",
+        "justinwalsh/daux.io": "^0.1.0",
+        "snc/redis-bundle": "2.x-dev",
+        "firebase/php-jwt": "dev-master",
+        "lexik/jwt-authentication-bundle": "dev-master"
+
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3",
+        "symfony/phpunit-bridge": "~2.7"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin",
+        "platform": {
+            "php": "5.6.19"
+        }
+    },
+    "extra": {
+        "symfony-app-dir": "app/frontend",
+        "symfony-web-dir": "web/assets",
+        "symfony-assets-install": "relative",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.7-dev"
+        }
+    }
+}

@@ -1,0 +1,283 @@
+App\Bundle\CoreBundle\Entity\User:
+    type: entity
+    cache:
+        usage : NONSTRICT_READ_WRITE
+        region : region_user
+    table: User
+    repositoryClass: App\Bundle\CoreBundle\Repository\User
+    entityListeners:
+        App\Bundle\CoreBundle\Listener\UserListener:
+            postLoad: [applyDiscountHandler, checkInWishlist]
+    indexes:
+        IDX_2DA179771D9D19EA:
+            columns:
+                - ban_type_id
+        FK_2DA1797713246F8A:
+            columns:
+                - primary_cover_photo_id
+        IDX_2DA17977F92F3E70:
+            columns:
+                - country_id
+    uniqueConstraints:
+        UNIQ_2DA179771CDA489C:
+            columns:
+                - primary_image_id
+    id:
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: user_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        password:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: true
+            length: 60
+            options:
+                fixed: false
+        contactNumber:
+            type: string
+            nullable: true
+            length: 60
+            options:
+                fixed: false
+            column: contact_number
+        dateAdded:
+            type: datetime
+            nullable: true
+            column: date_added
+        dateLastModified:
+            type: datetime
+            nullable: true
+            column: date_last_modified
+        isActive:
+            type: boolean
+            nullable: true
+            options:
+                default: '1'
+            column: is_active
+        isMobileVerified:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: is_mobile_verified
+        isEmailVerified:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: is_email_verified
+        loginCount:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: '0'
+            column: login_count
+        gender:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: false
+                default: M
+        birthdate:
+            type: datetime
+            nullable: true
+        lastLoginDate:
+            type: datetime
+            nullable: true
+            column: last_login_date
+        lastLogoutDate:
+            type: datetime
+            nullable: true
+            column: last_logout_date
+        lastLoginIp:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: last_login_ip
+        lastFailedLoginDate:
+            type: datetime
+            nullable: true
+            column: last_failed_login_date
+        failedLoginCount:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: failed_login_count
+        nickname:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        slug:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        isBanned:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: is_banned
+        lockDuration:
+            type: datetime
+            nullable: true
+            column: lock_duration
+        banTypeId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: ban_type_id
+        userType:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: user_type
+        forgotPasswordToken:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: forgot_password_token
+        forgotPasswordTokenExpiration:
+            type: datetime
+            nullable: true
+            column: forgot_password_token_expiration
+        forgotPasswordCode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: forgot_password_code
+        forgotPasswordCodeExpiration:
+            type: datetime
+            nullable: true
+            column: forgot_password_code_expiration
+        referralCode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: referral_code
+        firstName:
+            type: string
+            nullable: true
+            length: 512
+            options:
+                fixed: false
+            column: first_name
+        lastName:
+            type: string
+            nullable: true
+            length: 512
+            options:
+                fixed: false
+            column: last_name
+        slugChanged:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: slug_changed
+        reactivationcode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: reactivationCode
+        accountId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: account_id
+        tin:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: '0'
+        isSocialMedia:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: is_social_media
+        registrationType:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: registration_type
+        consecutiveLoginCount:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: consecutive_login_count
+    manyToOne:
+        primaryCoverPhoto:
+            targetEntity: Userimage
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                primary_cover_photo_id:
+                    referencedColumnName: user_image_id
+            orphanRemoval: false
+        primaryImage:
+            targetEntity: Userimage
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                primary_image_id:
+                    referencedColumnName: user_image_id
+            orphanRemoval: false
+        country:
+            targetEntity: Country
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                country_id:
+                    referencedColumnName: country_id
+            orphanRemoval: false
+    oneToMany:
+        products:
+            targetEntity: Product
+            mappedBy: user
+    
+    lifecycleCallbacks: {  }

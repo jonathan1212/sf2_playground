@@ -1,0 +1,37 @@
+services:
+
+    app_core.listener.user:
+        class: App\Bundle\CoreBundle\Listener\UserListener
+        calls:
+            - [setObjectPersister, ['@fos_elastica.object_persister.app.user']]
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: doctrine.event_listener, event: postPersist, priority: 2 }
+            - { name: doctrine.event_listener, event: postRemove, priority: 2 }
+            - { name: doctrine.event_listener, event: postUpdate, priority: 2 }
+            - { name: doctrine.event_listener, event: prePersist, priority: 2 }
+            - { name: doctrine.orm.entity_listener }
+            - { name: doctrine.event_subscriber, connection: default }
+    
+    app_core.listener.product:
+        class: App\Bundle\CoreBundle\Listener\ProductListener
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postRemove }
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: prePersist }
+
+    app_core.cache_invalidator:
+        class: App\Bundle\CoreBundle\Listener\CacheInvalidator
+        public: false
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
+    app_core.action_listener:
+        class: App\Bundle\CoreBundle\Listener\TokenListener
+        arguments: ['%tokens%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

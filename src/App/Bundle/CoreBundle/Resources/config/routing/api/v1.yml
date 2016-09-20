@@ -1,0 +1,7 @@
+api_oauth:
+    resource: "v1/oauth.yml"
+    prefix: /
+
+api_user:
+    resource: "v1/user.yml"
+    prefix: /

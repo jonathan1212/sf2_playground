@@ -1,0 +1,27 @@
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: redis://%redis_host%
+            logging: %kernel.debug%
+            options:
+                prefix : %redis_prefix%
+                
+        sncredis:
+            type: predis
+            alias: doctrine
+            dsn: redis://%redis_host%
+            options:
+                prefix : %redis_prefix%
+
+    doctrine:
+      metadata_cache:
+           client: default
+           entity_manager: [default, cached]
+      result_cache:
+           client: default
+           entity_manager: [default, cached]
+      query_cache:
+           client: default
+           entity_manager: [default, cached]

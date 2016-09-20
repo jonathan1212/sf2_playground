@@ -1,0 +1,73 @@
+App\Bundle\CoreBundle\Entity\Product:
+    type: entity
+    cache:
+        usage : NONSTRICT_READ_WRITE
+        region : region_user
+    table: Product
+    repositoryClass: App\Bundle\CoreBundle\Repository\ProductRepository
+    id:
+        productId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: productId
+            generator:
+                strategy: IDENTITY
+    fields:
+        dateCreated:
+            type: datetime
+            column: date_created
+        dateLastModified:
+            type: datetime
+            column: date_last_modified
+        dateLastEmptied:
+            type: datetime
+            column: date_last_emptied
+        name:
+            length: 255
+            options:
+                default: ''
+        description:
+            type: text
+            nullable: true
+        shortDescription:
+            type: string
+            column: shortDescription
+            length: 512
+            nullable: true
+            options:
+                default: ''
+        clickCount:
+            type: integer
+            column: click_count
+            options:
+                default: '0'
+        keywords:
+            nullable: true
+            length: 1024
+            options:
+                default: ''
+        status:
+            type: smallint
+            column: status
+            options:
+                default: '0'
+        slug:
+            type: string
+            length: 1024
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: products
+            joinColumn:
+                name: user_id
+                referencedColumnName: user_id
+            orphanRemoval: false
+        brand:  # connection from different db
+            targetEntity: Brand
+            joinColumn:
+                name: brand_id
+                referencedColumnName: brand_id
+            orphanRemoval: false

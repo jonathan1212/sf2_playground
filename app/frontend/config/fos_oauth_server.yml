@@ -1,0 +1,12 @@
+fos_oauth_server:
+    db_driver: orm
+    client_class:        App\Bundle\CoreBundle\Entity\OauthClient
+    access_token_class:  App\Bundle\CoreBundle\Entity\OauthAccessToken
+    refresh_token_class: App\Bundle\CoreBundle\Entity\OauthRefreshToken
+    auth_code_class:     App\Bundle\CoreBundle\Entity\OauthAuthCode
+    service:
+        user_provider: app.webservice_user_provider
+        options:
+            supported_scopes: user
+            access_token_lifetime: 3600
+            refresh_token_lifetime: 255152000

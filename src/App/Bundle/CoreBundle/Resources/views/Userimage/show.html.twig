@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Userimage</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Userimageid</th>
+                <td>{{ entity.userImageId }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ entity.userId }}</td>
+            </tr>
+            <tr>
+                <th>Imagelocation</th>
+                <td>{{ entity.imageLocation }}</td>
+            </tr>
+            <tr>
+                <th>Ishidden</th>
+                <td>{{ entity.isHidden }}</td>
+            </tr>
+            <tr>
+                <th>Dateadded</th>
+                <td>{{ entity.dateAdded|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Userimagetype</th>
+                <td>{{ entity.userImageType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('userimage') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('userimage_edit', { 'id': entity.userImageId }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

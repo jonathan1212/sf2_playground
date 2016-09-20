@@ -1,0 +1,87 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory: ~
+                # users:
+                #     ryan:
+                #         password: $2y$12$IzxBPVaKf4001DNKEbwgme5Bqbohszm6YBHikX/2eaBbsKxbmrrMa
+                #         roles: 'ROLE_USER'
+                #     admin:
+                #         password: $2y$12$P6bkIWhC.xz6UyX.b9ClL.Ri08gUvBUW/2WEwnARZwlgXR7jmP9XK
+                #         roles: 'ROLE_ADMIN'
+        webservice_provider:
+            id: app.webservice_user_provider
+
+        our_db_provider:
+            entity:
+                class: AppCoreBundle:User
+
+    encoders:
+        App\Bundle\CoreBundle\Entity\User: 
+            algorithm: bcrypt
+            cost: 12
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login_firewall:
+            pattern:    ^/login$
+            anonymous:  ~
+
+        oauth_token:
+            pattern:    ^/api/v(.*)/login #^/oauth/v2/token
+            security:   false
+
+        oauth_authorize:
+            pattern:    ^/oauth/v2/auth
+            form_login:
+                provider: webservice_provider
+                check_path: app_oauth_server_auth_login_check
+                login_path: app_oauth_server_auth_login
+            anonymous: true
+
+        api:
+            pattern:    ^/api/(.*)/(auth|message|product)/
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  false
+
+        main:
+            pattern:    ^/
+            http_basic: ~
+            anonymous: ~
+            provider: webservice_provider    
+            form_login:
+                #provider: webservice_provider    
+                login_path: app_login
+                check_path: /login_check
+                success_handler: app_core.security.authentication_handler
+                failure_handler: app_core.security.authentication_handler
+                
+            logout:
+                path: /logout
+                success_handler: security.logout_handler
+                target: /
+        default:
+            anonymous: ~
+            http_basic: ~
+
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/user, roles: ROLE_USER }
+        #- { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }

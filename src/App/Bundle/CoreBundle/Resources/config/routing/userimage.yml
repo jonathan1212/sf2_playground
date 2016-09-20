@@ -1,0 +1,30 @@
+userimage:
+    path:     /
+    defaults: { _controller: "AppCoreBundle:Userimage:index" }
+
+userimage_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppCoreBundle:Userimage:show" }
+
+userimage_new:
+    path:     /new
+    defaults: { _controller: "AppCoreBundle:Userimage:new" }
+
+userimage_create:
+    path:     /create
+    defaults: { _controller: "AppCoreBundle:Userimage:create" }
+    methods:  POST
+
+userimage_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppCoreBundle:Userimage:edit" }
+
+userimage_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppCoreBundle:Userimage:update" }
+    methods:  [POST, PUT]
+
+userimage_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppCoreBundle:Userimage:delete" }
+    methods:  [POST, DELETE]

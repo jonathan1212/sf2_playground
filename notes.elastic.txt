@@ -1,0 +1,278 @@
+#search
+curl 'localhost:9200/bank/_search?q=*&pretty'
+
+##
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": { "match_all": {} }
+}'
+
+##
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": { "match_all": {} },
+  "size": 1
+}'
+
+{
+  "query": {
+    "match_all": {}
+  },
+  "_source": ["account_number", "balance"], // result set show only 2 fields
+  "sort": { "balance": { "order": "desc" } }, // sort
+  "from": 2, // offset
+  "size": 1 // limit
+}
+
+//
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": { "match": { "account_number": 20 } } // query specific field
+}'
+
+// search matches with mill or lane
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": { "match": { "address": "mill lane" } }
+}'
+
+// search matches with mill or lane
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+"query": {
+    "bool": {
+      "should": [
+        { "match": { "address": "mill" } },
+        { "match": { "address": "lane" } }
+      ]
+    }
+  }
+}'
+
+// search full text containing mill lane
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": { "match_phrase": { "address": "mill lane" } }
+}'
+
+// search full text containing mill lane
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "address": "mill" } },
+        { "match": { "address": "lane" } }
+      ]
+    }
+  }
+}'
+
+// search neither mill or lane (without lane or mill)
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": {
+    "bool": {
+      "must_not": [
+        { "match": { "address": "mill" } },
+        { "match": { "address": "lane" } }
+      ]
+    }
+  }
+}'
+
+// combinations
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "age": "40" } }
+      ],
+      "must_not": [
+        { "match": { "state": "ID" } }
+      ]
+    }
+  }
+}'
+
+// filter with range
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "query": {
+    "bool": {
+      "must": { "match_all": {} },
+      "filter": {
+        "range": {
+          "balance": {
+            "gte": 20000,
+            "lte": 30000
+          }
+        }
+      }
+    }
+  }
+}'
+
+//aggregation
+//SELECT state, COUNT(*) FROM bank GROUP BY state ORDER BY COUNT(*) DESC
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "size": 0, // hide hints
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state"
+      }
+    }
+  }
+}'
+//result
+{
+"key" : "tx",
+"doc_count" : 17
+}, {
+"key" : "id",
+"doc_count" : 15
+}
+
+//average balance by state
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state"
+      },
+      "aggs": {
+        "average_balance": {
+          "avg": {
+            "field": "balance"
+          }
+        }
+      }
+    }
+  }
+}'
+
+
+//sort on the average balance in descending order
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state",
+        "order": {
+          "average_balance": "desc"
+        }
+      },
+      "aggs": {
+        "average_balance": {
+          "avg": {
+            "field": "balance"
+          }
+        }
+      }
+    }
+  }
+}'
+
+//group by age brackets (ages 20-29, 30-39, and 40-49), then by gender, and then finally get the average account balance, per age bracket, per gender
+curl -XPOST 'localhost:9200/bank/_search?pretty' -d '
+{
+  "size": 0,
+  "aggs": {
+    "group_by_age": {
+      "range": {
+        "field": "age",
+        "ranges": [
+          {
+            "from": 20,
+            "to": 30
+          },
+          {
+            "from": 30,
+            "to": 40
+          },
+          {
+            "from": 40,
+            "to": 50
+          }
+        ]
+      },
+      "aggs": {
+        "group_by_gender": {
+          "terms": {
+            "field": "gender"
+          },
+          "aggs": {
+            "average_balance": {
+              "avg": {
+                "field": "balance"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}'
+
+// comman options
+?format=yaml
+?human=false
+
+// math date
+now+1h
+now+1h+1m
+now+1h/d
+2015-01-01||+1M/d
+
+//filter_path
+curl -XGET 'localhost:9200/bank/_search?pretty&filter_path=took,hits.hits._id,hits.hits._score'
+
+// suport wild card
+?filter_path=nodes.*.ho*
+// ** used to include fields without knowing the exact path of the field
+&filter_path=indices.**.version
+
+//filter _source fields
+?pretty&filter_path=hits.hits._source&_source=age
+
+// put
+curl -XPUT 'http://localhost:9200/twitter/tweet/1' -d '{
+    "user" : "kimchy",
+    "post_date" : "2009-11-15T14:12:12",
+    "message" : "trying out Elasticsearch"
+}'
+
+//op_type
+$ curl -XPUT 'http://localhost:9200/twitter/tweet/1?op_type=create' -d '{
+    "user" : "kimchy",
+    "post_date" : "2009-11-15T14:12:12",
+    "message" : "trying out Elasticsearch"
+}'
+
+// create
+$ curl -XPUT 'http://localhost:9200/twitter/tweet/1/_create' -d '{
+    "user" : "kimchy",
+    "post_date" : "2009-11-15T14:12:12",
+    "message" : "trying out Elasticsearch"
+}'
+
+// automatic id creation
+$ curl -XPOST 'http://localhost:9200/twitter/tweet/' -d '{
+    "user" : "kimchy",
+    "post_date" : "2009-11-15T14:12:12",
+    "message" : "trying out Elasticsearch"
+}'
+
+// routing
+$ curl -XPOST 'http://localhost:9200/twitter/tweet?routing=kimchy' -d '{
+    "user" : "kimchy",
+    "post_date" : "2009-11-15T14:12:12",
+    "message" : "trying out Elasticsearch"
+}'

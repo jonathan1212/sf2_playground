@@ -1,0 +1,7 @@
+restaurant_add:
+    path:     /restaurant/add
+    defaults: { _controller: "AppCoreBundle:Restaurant:add" }
+
+restaurant_get:
+    path:     /restaurant/get
+    defaults: { _controller: "AppCoreBundle:Restaurant:get" }

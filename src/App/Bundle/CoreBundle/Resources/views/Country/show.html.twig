@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Country</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Countryid</th>
+                <td>{{ entity.countryId }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ entity.code }}</td>
+            </tr>
+            <tr>
+                <th>Dateadded</th>
+                <td>{{ entity.dateAdded|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datelastmodified</th>
+                <td>{{ entity.dateLastModified|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Referencenumber</th>
+                <td>{{ entity.referenceNumber }}</td>
+            </tr>
+            <tr>
+                <th>Areacode</th>
+                <td>{{ entity.areaCode }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('country') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('country_edit', { 'id': entity.countryId }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

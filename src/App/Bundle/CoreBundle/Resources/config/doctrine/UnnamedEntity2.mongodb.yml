@@ -1,0 +1,12 @@
+App\Bundle\CoreBundle\Document\UnnamedEntity2:
+  type: embeddedDocument
+  fields:
+    id:
+      id: true
+      type: object_id
+    title:
+      type: string
+    location:
+      type: string
+    tags:
+      type: collection

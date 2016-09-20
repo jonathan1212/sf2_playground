@@ -1,0 +1,14 @@
+App\Bundle\CoreBundle\Document\Address:
+  type: embeddedDocument
+  fields:
+    id:
+      id: true
+      type: object_id
+    building:
+      type: string
+    street:
+      type: string
+    zipcode:
+      type: string
+    coord:
+      type: collection

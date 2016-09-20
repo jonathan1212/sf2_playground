@@ -1,0 +1,9 @@
+buzz_index:
+    path:     /buzz
+    defaults: { _controller: "AppCoreBundle:Buzz:index" }
+
+
+buzz_get:
+    path:     /buzz/get
+    defaults: { _controller: "AppCoreBundle:Buzz:get" }
+

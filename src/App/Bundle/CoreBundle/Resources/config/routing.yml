@@ -1,0 +1,70 @@
+app_core_country:
+    resource: "@AppCoreBundle/Resources/config/routing/country.yml"
+    prefix:   /country
+
+app_core_user:
+    resource: "@AppCoreBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+app_core_userimage:
+    resource: "@AppCoreBundle/Resources/config/routing/userimage.yml"
+    prefix:   /userimage
+
+app_core_elastic:
+    resource: "@AppCoreBundle/Resources/config/routing/elastic.yml"
+    prefix:   /elastic
+
+app_core_admin:
+    resource: "@AppCoreBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
+
+app_product_routing:
+    resource: "routing/product.yml"
+    prefix: /
+
+app_restaurant_routing:
+    resource: "routing/restaurant.yml"
+    prefix: /
+
+app_cache_routing:
+    resource: "routing/cache.yml"
+    prefix: /
+
+app_brand_routing:
+    resource: "routing/brand.yml"
+    prefix: /
+
+app_buzz_routing:
+    resource: "routing/buzz.yml"
+    prefix: /
+
+app_core_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AppCoreBundle:Default:index }
+
+app_v1_routing:
+    resource: "routing/api/v1.yml"
+    prefix: /api/v1/
+
+## security
+app_login:
+    path:     /login
+    defaults: { _controller: AppCoreBundle:Security:login }
+
+login_check:
+    path: /login_check
+
+app_login2:
+    path:     /login2
+    defaults: { _controller: AppCoreBundle:Security:login2 }
+
+# app_login_check:
+#     path:     /login_check
+#     defaults: { _controller: AppCoreBundle:Security:loginCheck }  
+
+app_logout:
+    path: /logout
+
+default:
+    path: /
+    defaults: { _controller: AppCoreBundle:Default:index, name: 'sample name' }

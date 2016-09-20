@@ -1,0 +1,12 @@
+App\Bundle\CoreBundle\Document\Grades:
+  type: embeddedDocument
+  fields:
+    id:
+      id: true
+      type: object_id
+    date:
+      type: date
+    grade:
+      type: string
+    score:
+      type: int

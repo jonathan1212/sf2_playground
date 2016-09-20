@@ -1,0 +1,10 @@
+App\Bundle\CoreBundle\Document\Sample3:
+  type: document
+  fields:
+    id:
+      id: true
+      type: object_id
+    sample_id:
+      type: object_id
+    association_id:
+      type: object_id

@@ -1,0 +1,3 @@
+v1_user_info:
+    path: /auth/user/info
+    defaults: { _controller: AppCoreBundle:Api/v1/UserApi:getInfo }

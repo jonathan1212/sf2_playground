@@ -1,0 +1,21 @@
+App\Bundle\CoreBundle\Document\Restaurants:
+  type: document
+  collection: restaurants
+  repositoryClass: App\Bundle\CoreBundle\RepositoryMongo\RestaurantsRepository
+  fields:
+    id:
+      id: true
+      type: object_id
+    borough:
+      type: string
+    cuisine:
+      type: string
+    name:
+      type: string
+    restaurant_id:
+      type: string
+  embedMany:
+    address:
+      targetDocument: App\Bundle\CoreBundle\Document\Address
+    grades:
+      targetDocument: App\Bundle\CoreBundle\Document\Grades

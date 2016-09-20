@@ -1,0 +1,7 @@
+cache_index:
+    path:     /cache
+    defaults: { _controller: "AppCoreBundle:Cache:index" }
+
+cache_update:
+    path:     /cache/update
+    defaults: { _controller: "AppCoreBundle:Cache:update" }

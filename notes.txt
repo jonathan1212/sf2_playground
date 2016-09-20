@@ -1,0 +1,112 @@
+composer create-project symfony/framework-standard-edition my_project_name "2.7.*"
+
+
+## doctrine odm
+
+"doctrine/mongodb-odm": "~1.0",
+"doctrine/mongodb-odm-bundle": "~3.0",
+
+composer update doctrine/mongodb-odm doctrine/mongodb-odm-bundle
+
+#generate mongodb setters and getters
+./app/console doctrine:mongodb:generate:documents AppCoreBundle
+
+# create db from different connection
+php bin/console doctrine:database:create --connection=yilinker
+
+# Play only with "customer" mappings
+$ php bin/console doctrine:schema:update --force --em=yilinker
+
+#convert mapping with different connection
+php app/console doctrine:mapping:convert --em="ENTITY_MANAGER" --from-database yml ./src/NAMESPACE/NAMEBundle/Resources/config/doctrine/metadata/orm
+
+composer require doctrine/doctrine-migrations-bundle "^1.0"
+
+composer require firebase/php-jwt:dev-master
+
+#mongo db
+
+use test_database;
+
+show tables
+show collections
+
+
+#insert
+db.myCollection.insert( { x: 1 } );
+
+#query
+db.Product.find() 
+
+
+mongo db
+
+mongo-express -u user -p password -d database
+
+mongo-express -u superuser -p password
+
+
+// generate from database
+php app/console doctrine:mapping:import --force AppCoreBundle yml
+
+generate entity from mapping
+app/console doctrine:mapping:convert annotation ./src
+php app/console doctrine:generate:entities AppCoreBundle
+
+// Genearate getters and setters
+php bin/console doctrine:generate:entities AppBundle/Entity/User
+
+//update database schema
+php app/console doctrine:schema:update --force
+
+// generate controller 
+sudo ./app/console doctrine:generate:crud
+
+//generate form from entity information
+./app/console doctrine:generate:form AppCoreBundle:User
+
+//symfony password encoder
+php bin/console security:encode-password
+
+oauth 2
+php app/frontend/console app:oauth-server:client:create --redirect-uri="url" --grant-type="http://yilinker-online.com/grant/buyer" --grant-type="http://yilinker-online.com/grant/seller" --grant-type="http://yilinker-online.com/grant/affiliate" --grant-type="client_credentials" --grant-type="refresh_token"
+
+mongoimport --db test_database --collection restaurants --drop --file ~/LOCALDEVDISK/primer-dataset.json
+
+
+//mongodb generate entities
+doctrine:mongodb:generate:documents AppCoreBundle
+doctrine:mongodb:schema:update
+
+mongo import files - /var/www/html/SOURCES/northwind-mongo/mongo-import.sh
+==================
+for f in *.csv
+do
+    filename=$(basename "$f")
+    extension="${filename##*.}"
+    filename="${filename%.*}"
+    mongoimport -d test_database -c "$filename" --type csv --file "$f" --headerline
+done
+
+reids 
+=======
+>redis_cli
+> CONFIG GET loglevel
+>  CONFIG GET *
+
+--> SET name "tutorialspoint"  
+--> GET name
+
+
+==========
+localhost
+username: jonathan
+password: xY4daEMwq2PFEw9m
+
+
+generate private key
+====================
+$ mkdir -p app/var/jwt
+$ openssl genrsa -out app/var/jwt/private.pem -aes256 4096
+$ openssl rsa -pubout -in app/var/jwt/private.pem -out app/var/jwt/public.pem
+

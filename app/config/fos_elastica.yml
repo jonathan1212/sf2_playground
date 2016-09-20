@@ -1,0 +1,62 @@
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app: 
+            index_name: app_%kernel.environment%
+
+            types:
+                user:
+                    mappings:
+                        userId:
+                            type: integer
+                        contactNumber:
+                            type: string
+                        firstName:
+                            type: string
+                        lastName:
+                            type: string
+                        email:
+                            type: string
+                        isActive:
+                            type: boolean
+                        dateAdded:
+                            type: date
+                        listUsers: ~
+                        country:
+                            type: nested
+                            properties:
+                                countryId: ~
+                                name: ~
+                                code: ~
+                        primaryImage: # manyToOne relationship
+                            type: nested
+                            properties :
+                                imageLocation: ~
+                                dateAdded: ~
+                                userImageId: ~
+                        products: # oneToMany Relationship
+                            type: nested
+                            properties :
+                                productId: ~
+                                dateCreated: ~
+                                name: ~
+                                description: ~
+                        productIds: ~
+                        
+                    persistence:
+                        # the driver can be orm, mongodb or propel
+                        # listener and finder are not supported by
+                        # propel and should be removed
+                        driver: orm
+                        model: App\Bundle\CoreBundle\Entity\User
+                        repository: App\Bundle\CoreBundle\Services\Search\Repository\UserSearchRepository
+                        provider: ~
+                        listener:
+                            immediate: ~
+                        finder: ~
+                        identifier: userId
+                        model_to_elastica_transformer:
+                            service: app_core.transformers.elastica.user
+                        elastica_to_model_transformer:
+                            service: app_core.transformers.elasticaTouser

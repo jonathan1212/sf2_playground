@@ -1,0 +1,29 @@
+app_frontend:
+    resource: "@AppFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app_core:
+    resource: "@AppCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+app_oauth_server_auth_login:
+      pattern:  /oauth/v2/auth_login
+      defaults: { _controller: AppCoreBundle:Security:login2 }
+
+app_oauth_server_auth_login_check:
+      pattern:  /oauth/v2/auth_login_check
+      defaults: { _controller: AppCoreBundle:Security:loginCheck }

@@ -1,0 +1,10 @@
+App\Bundle\CoreBundle\Entity\OauthClient:
+    type: entity
+    table: OauthClient
+    id:
+        id:
+            type: integer
+            id: true
+            unsigned: false
+            generator:
+                strategy: AUTO
