@@ -259,5 +259,8 @@ App\Bundle\CoreBundle\Entity\YiUser:
         yiUserWarehouses:
             targetEntity: YiUserwarehouse
             mappedBy: user
+        yiProducts:
+            targetEntity: YiProduct
+            mappedBy: user
         
     lifecycleCallbacks: {  }

@@ -29,10 +29,14 @@ class YiUserController extends Controller
             dump($each);
         }
 
+        $userwarehouse = $em->getRepository('AppCoreBundle:YiUserwarehouse')->find(1);
+        
+        foreach($userwarehouse->getYiProductwarehouses() as $each) {
+            dump($each);
+        }        
+
         return $this->render('AppCoreBundle:Default:index.html.twig', array('name' => 'test'));
     }
    
-     
-    
     
 }

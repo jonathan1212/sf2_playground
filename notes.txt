@@ -55,6 +55,13 @@ php app/console doctrine:mapping:import --force AppCoreBundle yml
 
 generate entity from mapping
 ======================
+
+1. create database tables
+2. import mapping
+3. generate entity
+4. doctrine migrations
+5. commit changes
+
 app/console doctrine:mapping:convert annotation ./src
 php app/console doctrine:generate:entities AppCoreBundle
 php ./app/frontend/console doctrine:mapping:import "MyCustomBundle" xml --filter=MyMatchedEntity

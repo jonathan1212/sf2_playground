@@ -76,4 +76,8 @@ App\Bundle\CoreBundle\Entity\YiUserwarehouse:
                 location_id:
                     referencedColumnName: location_id
             orphanRemoval: false
+    oneToMany:
+        yiProductwarehouses:
+            targetEntity: YiProductwarehouse
+            mappedBy: userWarehouse
     lifecycleCallbacks: {  }

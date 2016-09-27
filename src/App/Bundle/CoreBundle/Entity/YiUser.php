@@ -1257,5 +1257,43 @@ class YiUser
     {
         return $this->yiUserWarehouses;
     }
-}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $yiProducts;
 
+
+    /**
+     * Add yiProduct
+     *
+     * @param \App\Bundle\CoreBundle\Entity\YiProduct $yiProduct
+     *
+     * @return YiUser
+     */
+    public function addYiProduct(\App\Bundle\CoreBundle\Entity\YiProduct $yiProduct)
+    {
+        $this->yiProducts[] = $yiProduct;
+
+        return $this;
+    }
+
+    /**
+     * Remove yiProduct
+     *
+     * @param \App\Bundle\CoreBundle\Entity\YiProduct $yiProduct
+     */
+    public function removeYiProduct(\App\Bundle\CoreBundle\Entity\YiProduct $yiProduct)
+    {
+        $this->yiProducts->removeElement($yiProduct);
+    }
+
+    /**
+     * Get yiProducts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getYiProducts()
+    {
+        return $this->yiProducts;
+    }
+}

@@ -254,4 +254,50 @@ class YiUserwarehouse
     {
         return $this->location;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $yiProductwarehouses;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->yiProductwarehouses = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add yiProductwarehouse
+     *
+     * @param \App\Bundle\CoreBundle\Entity\YiProductwarehouse $yiProductwarehouse
+     *
+     * @return YiUserwarehouse
+     */
+    public function addYiProductwarehouse(\App\Bundle\CoreBundle\Entity\YiProductwarehouse $yiProductwarehouse)
+    {
+        $this->yiProductwarehouses[] = $yiProductwarehouse;
+
+        return $this;
+    }
+
+    /**
+     * Remove yiProductwarehouse
+     *
+     * @param \App\Bundle\CoreBundle\Entity\YiProductwarehouse $yiProductwarehouse
+     */
+    public function removeYiProductwarehouse(\App\Bundle\CoreBundle\Entity\YiProductwarehouse $yiProductwarehouse)
+    {
+        $this->yiProductwarehouses->removeElement($yiProductwarehouse);
+    }
+
+    /**
+     * Get yiProductwarehouses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getYiProductwarehouses()
+    {
+        return $this->yiProductwarehouses;
+    }
 }

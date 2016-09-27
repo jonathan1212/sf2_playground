@@ -1,0 +1,153 @@
+App\Bundle\CoreBundle\Entity\YiProduct:
+    type: entity
+    table: yi_product
+    repositoryClass: App\Bundle\CoreBundle\Repository\YiProductRepository
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    id:
+        productId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: product_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        brandId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: brand_id
+        productCategoryId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: product_category_id
+        dateCreated:
+            type: datetime
+            nullable: false
+            column: date_created
+        dateLastModified:
+            type: datetime
+            nullable: false
+            column: date_last_modified
+        dateLastEmptied:
+            type: datetime
+            nullable: false
+            column: date_last_emptied
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        description:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        clickCount:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: click_count
+        keywords:
+            type: string
+            nullable: true
+            length: 1024
+            options:
+                fixed: false
+                default: ''
+        slug:
+            type: string
+            nullable: false
+            length: 1024
+            options:
+                fixed: false
+        conditionId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: condition_id
+        isCod:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: is_cod
+        isFreeShipping:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: is_free_shipping
+        shortdescription:
+            type: string
+            nullable: true
+            length: 512
+            options:
+                fixed: false
+                default: ''
+            column: shortDescription
+        status:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        youtubeVideoUrl:
+            type: string
+            nullable: true
+            length: 1024
+            options:
+                fixed: false
+                default: ''
+            column: youtube_video_url
+        shippingCategoryId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: shipping_category_id
+        isNotShippable:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: is_not_shippable
+        defaultLocale:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+                default: en
+            column: default_locale
+    manyToOne:
+        user:
+            targetEntity: YiUser
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: yiProducts
+            joinColumns:
+                user_id:
+                    referencedColumnName: user_id
+            orphanRemoval: false
+    oneToMany:
+        yiProductwarehouses:
+            targetEntity: YiProductwarehouse
+            mappedBy: product
+
+    lifecycleCallbacks: {  }
