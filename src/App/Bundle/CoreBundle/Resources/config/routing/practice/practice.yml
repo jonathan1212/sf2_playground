@@ -1,0 +1,3 @@
+yi-user:
+    path:     /yi-user
+    defaults: { _controller: "AppCoreBundle:Practice/YiUser:index" }

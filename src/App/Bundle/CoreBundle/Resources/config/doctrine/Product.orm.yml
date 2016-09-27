@@ -66,7 +66,7 @@ App\Bundle\CoreBundle\Entity\Product:
                 referencedColumnName: user_id
             orphanRemoval: false
         brand:  # connection from different db
-            targetEntity: Brand
+            targetEntity: App\Bundle\CoreBundle\Entity\Yilinker\Brand
             joinColumn:
                 name: brand_id
                 referencedColumnName: brand_id

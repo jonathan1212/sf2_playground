@@ -1,0 +1,79 @@
+App\Bundle\CoreBundle\Entity\YiUserwarehouse:
+    type: entity
+    table: yi_userwarehouse
+    repositoryClass: App\Bundle\CoreBundle\Repository\YiUserwarehouseRepository
+    indexes:
+        user_id:
+            columns:
+                - user_id
+        location_id:
+            columns:
+                - location_id
+    id:
+        userWarehouseId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: user_warehouse_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        address:
+            type: string
+            nullable: false
+            length: 500
+            options:
+                fixed: false
+        zipCode:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: zip_code
+        dateAdded:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: date_added
+        dateLastModified:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: date_last_modified
+        isDelete:
+            type: boolean
+            nullable: false
+            column: is_delete
+    manyToOne:
+        user:
+            targetEntity: YiUser
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: yiUserWarehouses
+            joinColumns:
+                user_id:
+                    referencedColumnName: user_id
+            orphanRemoval: false
+        location:
+            targetEntity: YiLocation
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                location_id:
+                    referencedColumnName: location_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

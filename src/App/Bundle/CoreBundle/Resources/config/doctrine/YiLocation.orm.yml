@@ -1,0 +1,70 @@
+App\Bundle\CoreBundle\Entity\YiLocation:
+    type: entity
+    table: yi_location
+    repositoryClass: App\Bundle\CoreBundle\Repository\YiLocationRepository
+    indexes:
+        parent_id:
+            columns:
+                - parent_id
+    id:
+        locationId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: location_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        locationTypeId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: location_type_id
+        location:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        code:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+                default: ''
+        isActive:
+            type: boolean
+            nullable: true
+            options:
+                default: '1'
+            column: is_active
+        lookupId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: lookup_id
+        dateAdded:
+            type: datetime
+            nullable: true
+            column: date_added
+        dateLastModified:
+            type: datetime
+            nullable: true
+            column: date_last_modified
+    manyToOne:
+        parent:
+            targetEntity: YiLocation
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                parent_id:
+                    referencedColumnName: location_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -46,6 +46,11 @@ app_v1_routing:
     resource: "routing/api/v1.yml"
     prefix: /api/v1/
 
+app_practice_routing:
+    resource: "routing/practice/practice.yml"
+    prefix: /
+
+
 ## security
 app_login:
     path:     /login
