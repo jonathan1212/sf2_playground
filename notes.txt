@@ -66,7 +66,12 @@ app/console doctrine:mapping:convert annotation ./src
 php app/console doctrine:generate:entities AppCoreBundle
 php ./app/frontend/console doctrine:mapping:import "MyCustomBundle" xml --filter=MyMatchedEntity
  
+generate forms
+============
+doctrine:generate:form AcmeBlogBundle:Post
 
+
+=======
 // Genearate getters and setters
 php bin/console doctrine:generate:entities AppBundle/Entity/User
 

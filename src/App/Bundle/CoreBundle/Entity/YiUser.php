@@ -7,6 +7,19 @@ namespace App\Bundle\CoreBundle\Entity;
  */
 class YiUser
 {
+    const USER_TYPE_BUYER = 0;
+
+    /**
+     * User type for seller
+     */
+    const USER_TYPE_SELLER = 1;
+
+    /**
+     * User type for guest
+     */
+    const USER_TYPE_GUEST = 2;
+
+
     /**
      * @var integer
      */
@@ -45,17 +58,17 @@ class YiUser
     /**
      * @var boolean
      */
-    private $isActive = '1';
+    private $isActive;
 
     /**
      * @var boolean
      */
-    private $isMobileVerified = '0';
+    private $isMobileVerified;
 
     /**
      * @var boolean
      */
-    private $isEmailVerified = '0';
+    private $isEmailVerified;
 
     /**
      * @var integer
@@ -110,7 +123,7 @@ class YiUser
     /**
      * @var boolean
      */
-    private $isBanned = '0';
+    private $isBanned = true;
 
     /**
      * @var \DateTime
@@ -165,7 +178,7 @@ class YiUser
     /**
      * @var boolean
      */
-    private $slugChanged = '0';
+    private $slugChanged;
 
     /**
      * @var integer
@@ -190,7 +203,7 @@ class YiUser
     /**
      * @var boolean
      */
-    private $isSocialMedia = '0';
+    private $isSocialMedia;
 
     /**
      * @var integer

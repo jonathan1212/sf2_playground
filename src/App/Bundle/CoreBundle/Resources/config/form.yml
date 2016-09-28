@@ -1,0 +1,17 @@
+services:
+    
+    app_core.form.type.app_base_form_type:
+        class: App\Bundle\CoreBundle\Form\Type\AppBaseFormType
+        arguments:
+            default_options:
+                intention: '%csrf_default_intention%'
+
+    app_core.form.type.user_info:
+        class: App\Bundle\CoreBundle\Form\Type\YiUserType
+        parent: app_core.form.type.app_base_form_type
+        calls:
+            - [setKernel, ['@kernel']]
+            - [setContainer, ['@service_container']]
+
+        tags:
+            - { name: form.type, alias: user_info }

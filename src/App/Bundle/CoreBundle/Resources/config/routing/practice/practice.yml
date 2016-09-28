@@ -1,3 +1,12 @@
 yi-user:
     path:     /yi-user
     defaults: { _controller: "AppCoreBundle:Practice/YiUser:index" }
+
+yi-user-new:
+    path:     /yi-user/new
+    defaults: { _controller: "AppCoreBundle:Practice/YiUser:new" }
+
+yi-user-edit:
+    path:     /yi-user/edit/{id}
+    defaults: { _controller: "AppCoreBundle:Practice/YiUser:edit" }
+

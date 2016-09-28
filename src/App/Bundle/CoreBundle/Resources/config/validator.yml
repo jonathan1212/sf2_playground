@@ -1,0 +1,13 @@
+services:
+
+    app_core.form.validator.constraint.valid_slug:
+        class: App\Bundle\CoreBundle\Form\Validator\Constraints\ValidSlugValidator
+        tags:
+            - { name: validator.constraint_validator, alias: valid_slug }
+
+    app_core.form.validator.constraint.unique_email:
+        class: App\Bundle\CoreBundle\Form\Validator\Constraints\UniqueEmailValidator
+        arguments:
+            - '@app_core_bundle.repository.yiuser'
+        tags:
+            - { name: validator.constraint_validator, alias: unique_email }

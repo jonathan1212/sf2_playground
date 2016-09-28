@@ -1,0 +1,8 @@
+services:
+
+    app_core_bundle.repository.yiuser:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - App\Bundle\CoreBundle\Entity\YiUser
