@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Yi User Warehouse</h1>
+
+    {# {{ form(form) }} #}
+
+    {{ form_start(form, {attr: {id: 'voucher-form', class: 'ui form segment'}}) }}
+
+
+    {# {% set yiuser = form.user %} #}
+
+    {{ dump(form) }}
+         
+    {{ dump(form.name) }}
+    
+    {{ dump(form.yiProductwarehouses) }}
+
+    {# {{ dump(form.user) }} #}
+    {# {{ dump(yiuser.firstName) }} #}
+
+    
+    
+    <ul class="tags" data-prototype="{{ form_widget(form.yiProductwarehouses.vars.prototype)|e('html_attr') }}">
+        
+        {% for yiProductwarehouses in form.yiProductwarehouses %}
+
+         <li>{{ form_row(yiProductwarehouses.handlingFee) }}</li>
+
+        {% endfor %}    
+
+    </ul>
+
+    {# {% for user in form.user %}
+
+        {{ dump(user) }}
+
+    
+    {% endfor %} #}
+
+    {# 
+
+
+    {{ form_widget(yiuser.email) }} #}
+
+    <input type="submit" name="">
+    {{ form_end(form) }}
+{% endblock %}

@@ -47,7 +47,8 @@
         "justinwalsh/daux.io": "^0.1.0",
         "snc/redis-bundle": "2.x-dev",
         "firebase/php-jwt": "dev-master",
-        "lexik/jwt-authentication-bundle": "dev-master"
+        "lexik/jwt-authentication-bundle": "dev-master",
+        "liip/imagine-bundle": "^1.6"
 
     },
     "require-dev": {

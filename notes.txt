@@ -129,3 +129,11 @@ $ mkdir -p app/var/jwt
 $ openssl genrsa -out app/var/jwt/private.pem -aes256 4096
 $ openssl rsa -pubout -in app/var/jwt/private.pem -out app/var/jwt/public.pem
 
+background process
+==================
+nohup node server.js > /dev/null 2>&1 &
+
+gmail smtp swiftmailer
+======================
+https://accounts.google.com/b/0/UnlockCaptcha
+

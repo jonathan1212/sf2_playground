@@ -15,3 +15,23 @@ services:
 
         tags:
             - { name: form.type, alias: user_info }
+
+    app_core.form.type.product_warehouse:
+        class: App\Bundle\CoreBundle\Form\Type\YiProductwarehouseType
+        parent: app_core.form.type.app_base_form_type
+        calls:
+            - [setKernel, ['@kernel']]
+            - [setContainer, ['@service_container']]
+
+        tags:
+            - { name: form.type, alias: product_warehouse }
+
+    app_core.form.type.user_warehouse:
+        class: App\Bundle\CoreBundle\Form\Type\YiUserwarehouseType
+        parent: app_core.form.type.app_base_form_type
+        calls:
+            - [setKernel, ['@kernel']]
+            - [setContainer, ['@service_container']]
+
+        tags:
+            - { name: form.type, alias: user_warehouse }

@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use App\Bundle\CoreBundle\Form\Validator\Constraints\ValidSlug;
 use App\Bundle\CoreBundle\Form\Validator\Constraints\UniqueEmail;
+use Symfony\Component\Validator\Constraints\File;
 use App\Bundle\CoreBundle\Entity\YiUser;
 
 
@@ -144,6 +145,21 @@ class YiUserType extends AbstractType
                 'required' => false,
             ))
 
+            ->add('lastName','file', array(
+                'required' => false,
+                'constraints' => array(
+                    new File(array(
+                        'maxSize' => '10M',
+                        'mimeTypes' => array(
+                            'image/jpg',
+                            'image/jpeg',
+                            'image/png',
+                    ),
+                    'mimeTypesMessage' => 'Please upload a valid jpg, jpeg or png image',
+                ))
+)
+            ))
+
             /*->add('primaryImageId')
             
             
@@ -168,7 +184,7 @@ class YiUserType extends AbstractType
             ->add('forgotPasswordCodeExpiration')
             ->add('referralCode')
             
-            ->add('lastName')
+            
             ->add('slugChanged', 'checkbox')
             ->add('primaryCoverPhotoId')
             ->add('reactivationcode')

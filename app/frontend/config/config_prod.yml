@@ -25,3 +25,18 @@ monolog:
             level: debug
         console:
             type:  console
+
+swiftmailer:
+    mailers:
+      default:
+        disable_delivery: false
+        spool: { type: file, path: %kernel.root_dir%/spool }
+      account:
+        disable_delivery: false
+        spool: { type: file, path: %kernel.root_dir%/spool }
+      verification:
+        disable_delivery: false
+        spool: { type: file, path: %kernel.root_dir%/spool }
+      transaction:
+        disable_delivery: false
+        spool: { type: file, path: %kernel.root_dir%/spool }

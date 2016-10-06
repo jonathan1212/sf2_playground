@@ -1,0 +1,28 @@
+# Swiftmailer Configuration
+swiftmailer:
+    default_mailer: default
+    mailers:
+      default:
+        transport: "%mailer_transport%"
+        host:      "%mailer_host%"
+        username:  "%mailer_user%"
+        password:  "%mailer_password%"
+        spool: { type: memory }
+      account:
+        transport: "%account_mailer_transport%"
+        host:      "%account_mailer_host%"
+        username:  "%account_mailer_user%"
+        password:  "%account_mailer_password%"
+        spool: { type: memory }
+      verification:
+        transport: "%verification_mailer_transport%"
+        host:      "%verification_mailer_host%"
+        username:  "%verification_mailer_user%"
+        password:  "%verification_mailer_password%"
+        spool: { type: memory }
+      transaction:
+        transport: "%mailer_transport%"
+        host:      "%mailer_host%"
+        username:  "%mailer_user%"
+        password:  "%mailer_password%"
+        spool: { type: memory }

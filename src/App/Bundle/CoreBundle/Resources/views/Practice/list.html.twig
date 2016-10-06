@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Yi User list</h1>
+
+    <table class="table basic feedback-list">
+        <tr>
+            <th>Id.</th>
+            <th>name</th>
+            <th>contact number</th>
+            <th>date added</th>
+            <th>email</th>
+            <th>UserType</th>
+            <th>User Type</th>
+            <th>Date Added</th>
+        </tr>
+
+        {% for user in users %}
+            <tr>
+                <td> {{ user.userId }} </td>
+                <td> {{ user.firstName }} </td>
+                <td>
+                    {{ user.contactNumber }}
+                </td>
+                <td> {{ user.dateAdded | date('M d Y') }} </td>
+                <td>  <a href="{{ asset('assets/images/uploads/' ~ user.lastName) }}">View brochure (PDF)</a>  </td>
+                <td>  </td>
+                <td>  </td>
+                <td>  </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {{ include('AppCoreBundle:Default:pagination.html.twig', {totalResults: users.count, perPage: 2 }) }}
+{% endblock %}

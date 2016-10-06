@@ -6,10 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
-/**
- * Class QueryRepository
- * @package Yilinker\Bundle\CoreBundle\Custom
- */
+
 class BaseQueryRepository extends EntityRepository
 {
     private $qb = null;

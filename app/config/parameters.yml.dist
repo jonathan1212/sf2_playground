@@ -21,6 +21,17 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
+    account_mailer_transport: gmail
+    account_mailer_host: null
+    account_mailer_user: noreply@yilinker.ph
+    account_mailer_password: yilink3rN0r3ply123!!!
+    
+    verification_mailer_transport: gmail
+    verification_mailer_host: null
+    verification_mailer_user: noreply@yilinker.ph
+    verification_mailer_password: yilink3rN0r3ply123!!!
+    
+
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
@@ -37,3 +48,4 @@ parameters:
     jwt_key_pass_phrase:  'password'                              # ssh key pass phrase
     jwt_token_ttl:        86400
     csrf_default_intention: yilinker_intention
+    image_directory: '%kernel.root_dir%/../web/assets/images'

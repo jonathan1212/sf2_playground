@@ -11,16 +11,11 @@ class YiProductwarehouse
      * @var integer
      */
     private $productWarehouseId;
-
+    
     /**
      * @var integer
      */
-    private $productId;
-
-    /**
-     * @var integer
-     */
-    private $priority = '1';
+    private $priority;
 
     /**
      * @var string
@@ -52,6 +47,15 @@ class YiProductwarehouse
      */
     private $userWarehouse;
 
+    private static $code = array(
+        1 => 'ph',
+        2 => 'en'
+    );
+
+    public static function getCode($code = null)
+    {
+        return  is_null($code) ? self::$code : self::$code[$code];
+    }
 
     /**
      * Get productWarehouseId
@@ -61,30 +65,6 @@ class YiProductwarehouse
     public function getProductWarehouseId()
     {
         return $this->productWarehouseId;
-    }
-
-    /**
-     * Set productId
-     *
-     * @param integer $productId
-     *
-     * @return YiProductwarehouse
-     */
-    public function setProductId($productId)
-    {
-        $this->productId = $productId;
-
-        return $this;
-    }
-
-    /**
-     * Get productId
-     *
-     * @return integer
-     */
-    public function getProductId()
-    {
-        return $this->productId;
     }
 
     /**

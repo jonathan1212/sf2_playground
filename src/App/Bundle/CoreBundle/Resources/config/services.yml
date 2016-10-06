@@ -68,3 +68,27 @@ services:
         - [setPropertyAccessor, ['@fos_elastica.property_accessor']]
       tags:
         - { name: fos_elastica.elastica_to_model_transformer, type: user, index: app_dev }
+
+  #mailler
+  app_core.service.user.mailer:
+      class: App\Bundle\CoreBundle\Services\Mailer
+      arguments:
+        - @service_container
+        - @templating
+        - @templating.helper.assets
+        - %mailer_user%
+
+  #services file up
+  app_core.services.file_upload:
+      class: App\Bundle\CoreBundle\Services\FileUploader
+      arguments:
+        - %image_directory%
+        - @service_container
+
+ # image manipulation
+  app_core.service.image_manipulation:
+    class: App\Bundle\CoreBundle\Services\ImageManipulation
+    arguments:
+        - @liip_imagine.data.manager
+        - @liip_imagine.filter.manager
+        - %kernel.root_dir%

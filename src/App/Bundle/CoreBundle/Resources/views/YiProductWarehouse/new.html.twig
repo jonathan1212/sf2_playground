@@ -1,0 +1,62 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Yi Product Warehouse</h1>
+
+    {# {{ form(form) }} #}
+
+    {{ form_start(form, {attr: {id: 'voucher-form', class: 'ui form segment'}}) }}
+
+        <div class="form col-md-6">
+            {{ form_label(form.product) }}
+            {{ form_widget(form.product) }}
+            <span class="form-ui-note error">
+                {{ form_errors(form.product) }}
+            </span>
+        </div>
+
+        <div class="form col-md-6">
+            {{ form_label(form.userWarehouse) }}
+            {{ form_widget(form.userWarehouse) }}
+            <span class="form-ui-note error">
+                {{ form_errors(form.userWarehouse) }}
+            </span>
+        </div>
+
+        <div class="form col-md-6">
+            {{ form_label(form.userWarehouse) }}
+            {{ form_widget(form.userWarehouse) }}
+            <span class="form-ui-note error">
+                {{ form_errors(form.userWarehouse) }}
+            </span>
+        </div>
+
+        <div class="form col-md-6">
+            {{ form_label(form.handlingFee) }}
+            {{ form_widget(form.handlingFee) }}
+            <span class="form-ui-note error">
+                {{ form_errors(form.handlingFee) }}
+            </span>
+        </div>
+
+        <div class="form col-md-6">
+            {{ form_label(form.dateAdded) }}
+            {{ form_widget(form.dateAdded) }}
+            <span class="form-ui-note error">
+                {{ form_errors(form.dateAdded) }}
+            </span>
+        </div>
+
+        <div class="form col-md-6">
+            {{ form_label(form.countryCode) }}
+            {{ form_widget(form.countryCode) }}
+            <span class="form-ui-note error">
+                {{ form_errors(form.countryCode) }}
+            </span>
+        </div>
+
+
+
+    <input type="submit" name="">
+    {{ form_end(form) }}
+{% endblock %}

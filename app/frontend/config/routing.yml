@@ -27,3 +27,6 @@ app_oauth_server_auth_login:
 app_oauth_server_auth_login_check:
       pattern:  /oauth/v2/auth_login_check
       defaults: { _controller: AppCoreBundle:Security:loginCheck }
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

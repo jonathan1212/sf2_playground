@@ -21,6 +21,14 @@ class YiUserRepository extends BaseQueryRepository
         return $this->getCount();
     }
 
+    public function getList($page)
+    {
+        $this->qb();
+        $this->setLimit(2);
+        
+        return $this->paginate($page);
+    }
+
     public function countEmail($email)
     {
         $this->qb()->criteriaEmail($email);

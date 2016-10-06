@@ -2,6 +2,10 @@ yi-user:
     path:     /yi-user
     defaults: { _controller: "AppCoreBundle:Practice/YiUser:index" }
 
+yi-user-list:
+    path:     /yi-user/list
+    defaults: { _controller: "AppCoreBundle:Practice/YiUser:list" }
+
 yi-user-new:
     path:     /yi-user/new
     defaults: { _controller: "AppCoreBundle:Practice/YiUser:new" }
@@ -10,3 +14,15 @@ yi-user-edit:
     path:     /yi-user/edit/{id}
     defaults: { _controller: "AppCoreBundle:Practice/YiUser:edit" }
 
+#yi productwrawehouse
+yi-productwarehouse-new:
+    path:     /yi-productwarehouse/new
+    defaults: { _controller: "AppCoreBundle:Practice/YiProductWarehouse:new" }
+
+yi-productwarehouse-edit:
+    path:     /yi-productwarehouse/edit/{id}
+    defaults: { _controller: "AppCoreBundle:Practice/YiProductWarehouse:edit" }
+
+yi-userwarehouse-new:
+    path:   /yi-userwarehouse/new
+    defaults: { _controller: "AppCoreBundle:Practice/YiUserWarehouse:new" }

@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Bundle\CoreBundle\Entity\User;
 use App\Bundle\CoreBundle\Form\UserType;
 use App\Bundle\CoreBundle\Entity\YiUser;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * User controller.
@@ -33,14 +34,25 @@ class YiUserController extends Controller
 
         foreach($userwarehouse->getYiProductwarehouses() as $each) {
             dump($each);
-        }        
+        }       
 
         return $this->render('AppCoreBundle:Default:index.html.twig', array('name' => 'test'));
     }
 
+    public function listAction(Request $request)
+    {
+        $page = $request->get('page',1);
+
+        $em = $this->get('doctrine')->getManager();
+
+        $users = $em->getRepository('AppCoreBundle:YiUser')->getList($page);
+
+        return $this->render('AppCoreBundle:Practice:list.html.twig', compact('users'));   
+    }
 
     public function newAction(Request $request)
     {
+
         $em = $this->get('doctrine')->getManager();
 
         $form = $this->createForm('user_info', new YiUser(), array());
@@ -50,6 +62,13 @@ class YiUserController extends Controller
         if ($form->isValid()) {
 
             $yiuser = $form->getData();
+            
+            //file upload
+            $imageFile = $yiuser->getLastName();
+            $filename = $this->get('app_core.services.file_upload')->upload($imageFile);
+
+            $yiuser->setLastName($filename); 
+
             $em->persist($yiuser);
             $em->flush();
             
@@ -74,6 +93,10 @@ class YiUserController extends Controller
         $em = $this->get('doctrine')->getManager();
 
         $yiUser = $em->getRepository('AppCoreBundle:YiUser')->find($id);
+
+        $yiUser->setLastName(
+            new File($this->getParameter('image_directory').'/uploads/'.$yiUser->getLastName())
+        );
 
         $form = $this->createForm('user_info', $yiUser, array('excludedId' => $yiUser->getUserId()));
         
