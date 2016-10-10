@@ -4,6 +4,13 @@ App\Bundle\CoreBundle\Entity\User:
         usage : NONSTRICT_READ_WRITE
         region : region_user
     table: User
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: discr
+        type: string
+    discriminatorMap:
+        user: User
+        employee: Employee
     repositoryClass: App\Bundle\CoreBundle\Repository\User
     entityListeners:
         App\Bundle\CoreBundle\Listener\UserListener:

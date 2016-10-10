@@ -1,0 +1,7 @@
+lablogitem:
+    path:     /lablogitem
+    defaults: { _controller: "AppCoreBundle:LabLogItem:index" }
+
+lablog_event:
+    path:     /lablogitem/event
+    defaults: { _controller: "AppCoreBundle:LabLogItem:event" }

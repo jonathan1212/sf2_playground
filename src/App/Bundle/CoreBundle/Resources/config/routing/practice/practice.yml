@@ -26,3 +26,8 @@ yi-productwarehouse-edit:
 yi-userwarehouse-new:
     path:   /yi-userwarehouse/new
     defaults: { _controller: "AppCoreBundle:Practice/YiUserWarehouse:new" }
+
+
+yi-location:
+    path:   /yi-location
+    defaults: { _controller: "AppCoreBundle:Practice/YiLocation:index" }

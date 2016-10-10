@@ -1,0 +1,31 @@
+App\Bundle\CoreBundle\Entity\Inventory:
+    type: entity
+    table: inventory
+    repositoryClass: App\Bundle\CoreBundle\Repository\InventoryRepository
+    inheritanceType: JOINED
+    discriminatorColumn:
+        name: discriminator
+        type: string
+    discriminatorMap:
+        inventory: Inventory
+        inventory_table: InventoryTable
+        inventory_room: InventoryRoom
+    id:
+        inventory_id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: inventory_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        category:
+            length: 255
+            options:
+                default: ''
+        part_number:
+            length: 255
+            options:
+                default: ''

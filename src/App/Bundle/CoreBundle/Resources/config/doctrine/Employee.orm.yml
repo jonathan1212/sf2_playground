@@ -1,0 +1,9 @@
+App\Bundle\CoreBundle\Entity\Employee:
+    type: entity
+    fields:
+        job:
+            type: string
+            nullable: false
+        company:
+            type: string
+            column: company

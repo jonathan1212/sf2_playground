@@ -14,6 +14,8 @@ class BrandController extends Controller
      */
     public function indexAction()
     {
+
+
         //$em = $this->get('doctrine')->getManager();
         //$em = $this->get('doctrine')->getManager('default');
         //$em = $this->get('doctrine.orm.default_entity_manager');

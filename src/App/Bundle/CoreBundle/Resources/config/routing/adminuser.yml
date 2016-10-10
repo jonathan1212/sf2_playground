@@ -1,0 +1,3 @@
+admin_user:
+    path:     /user-admin
+    defaults: { _controller: "AppCoreBundle:AdminUser:index" }

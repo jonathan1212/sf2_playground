@@ -1,0 +1,4 @@
+inventory_index:
+    path:     /inventory
+    defaults: { _controller: "AppCoreBundle:Inventory:index" }
+

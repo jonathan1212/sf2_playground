@@ -1,0 +1,19 @@
+App\Bundle\CoreBundle\Entity\LabLogItemBlog:
+    type: entity
+    #table: lab_log_item_blog
+    #repositoryClass: App\Bundle\CoreBundle\Repository\LabLogItemBlogRepository
+    #inheritanceType: SINGLE_TABLE
+    # id:
+    #     id:
+    #         type: integer
+    #         nullable: false
+    #         options:
+    #             unsigned: false
+    #         id: true
+    #         column: id
+    #         generator:
+    #             strategy: IDENTITY
+    fields:
+        content:
+            type: text
+            nullable: true

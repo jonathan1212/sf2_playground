@@ -13,6 +13,9 @@
 /web/assets/css/flag-icon-css
 /files
 
+#core
+src/App/Bundle/CoreBundle/Entity/*.php~
+
 #FRONTEND RULES
 /app/frontend/spool/
 /app/frontend/bootstrap.php.cache

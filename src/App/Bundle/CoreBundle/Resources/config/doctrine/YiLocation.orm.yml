@@ -1,6 +1,13 @@
 App\Bundle\CoreBundle\Entity\YiLocation:
     type: entity
     table: yi_location
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: discr
+        type: string
+    discriminatorMap:
+        parent_location: YiLocation
+        child_location: YiLocation
     repositoryClass: App\Bundle\CoreBundle\Repository\YiLocationRepository
     indexes:
         parent_id:

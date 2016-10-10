@@ -23,5 +23,7 @@ class AdminController extends Controller
         exit;
         return new Response('<html><body>Admin page!</body></html>');
     }
+
+
     
 }

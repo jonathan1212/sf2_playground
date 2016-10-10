@@ -1,0 +1,22 @@
+App\Bundle\CoreBundle\Entity\LabLogItemEvent:
+    type: entity
+    #table: lab_log_item_event
+    #repositoryClass: App\Bundle\CoreBundle\Repository\LabLogItemBlogRepository
+    #inheritanceType: SINGLE_TABLE
+    # id:
+    #     id:
+    #         type: integer
+    #         nullable: false
+    #         options:
+    #             unsigned: false
+    #         id: true
+    #         column: id
+    #         generator:
+    #             strategy: IDENTITY
+    fields:
+        location:
+            type: string
+            nullable: false
+        requiresRegistration:
+            type: datetime
+            column: requires_registration

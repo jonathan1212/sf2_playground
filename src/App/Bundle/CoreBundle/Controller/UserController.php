@@ -2,6 +2,7 @@
 
 namespace App\Bundle\CoreBundle\Controller;
 
+use App\Bundle\CoreBundle\Entity\Employee;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -222,5 +223,27 @@ class UserController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    public function inheritanceAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $x = $em->getRepository('AppCoreBundle:User')->find(27);
+        dump($x);
+        exit;
+
+        $user = new Employee();
+        $user->setPassword('password');
+        $user->setFirstName('firstname');
+        $user->setLastName('jonathan');
+        $user->setJob('job');
+
+        $em->persist($user);
+
+        $em->flush();
+
+        exit;
+
     }
 }

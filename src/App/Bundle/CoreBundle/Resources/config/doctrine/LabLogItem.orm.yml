@@ -1,0 +1,35 @@
+App\Bundle\CoreBundle\Entity\LabLogItem:
+    type: entity
+    table: lab_log_item
+    repositoryClass: App\Bundle\CoreBundle\Repository\LabLogItemRepository
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: discriminator
+        type: string
+    discriminatorMap:
+        LabLogItemBlog: LabLogItemBlog
+        LabLogItemEvent: LabLogItemEvent
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id
+            generator:
+                strategy: IDENTITY
+    fields:
+        dateCreated:
+            type: datetime
+            column: date_created
+        dateLastModified:
+            type: datetime
+            column: date_last_modified
+        title:
+            length: 255
+            options:
+                default: ''
+        description:
+            type: text
+            nullable: true

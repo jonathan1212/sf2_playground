@@ -1,0 +1,12 @@
+App\Bundle\CoreBundle\Entity\InventoryTable:
+    type: entity
+    table: inventory_table
+    repositoryClass: App\Bundle\CoreBundle\Repository\InventoryTableRepository
+    fields:
+        name:
+            type: string
+            column: name
+        quantity:
+            length: 255
+            options:
+                default: ''

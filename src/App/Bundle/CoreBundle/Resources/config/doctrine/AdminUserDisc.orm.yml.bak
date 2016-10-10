@@ -1,0 +1,9 @@
+App\Bundle\CoreBundle\Entity\AdminUserDisc:
+    type: entity
+    manyToOne:
+        source:
+            targetEntity: AdminUser
+            joinColumn:
+                name: table_id
+                referencedColumnName: id
+            orphanRemoval: false
