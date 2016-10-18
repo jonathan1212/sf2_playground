@@ -4,6 +4,7 @@ namespace App\Bundle\CoreBundle\Controller;
 
 
 use App\Bundle\CoreBundle\Entity\InventoryRoom;
+use App\Bundle\CoreBundle\Entity\InventoryRoomAttribute;
 use App\Bundle\CoreBundle\Entity\InventoryTable;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -23,9 +24,9 @@ class InventoryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-//        $roomObj = $em->getRepository('AppCoreBundle:Inventory')->find(3);
-//        dump($roomObj);
-//        exit;
+        $roomObj = $em->getRepository('AppCoreBundle:Inventory')->find(20);
+        dump($roomObj);
+        exit;
 
         $room = new InventoryRoom();
         $room->setPartNumber('partnumber');
@@ -41,8 +42,16 @@ class InventoryController extends Controller
         $table->setQuantity('1');
         $table->setName('name');
         $table->setPartNumber('2243');
-
         $em->persist($table);
+
+
+        $roomAttribute = new InventoryRoomAttribute();
+        $roomAttribute->setAttribute('color');
+        $roomAttribute->setValue('red');
+        $roomAttribute->setRoomType('room type');
+        $roomAttribute->setRackLimit('rack');
+
+        $em->persist($roomAttribute);
 
         $em->flush();
 

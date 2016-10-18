@@ -2,12 +2,14 @@
 
 namespace App\Bundle\CoreBundle\Transformer;
 
+use Carbon\Carbon;
 use FOS\ElasticaBundle\Doctrine\AbstractElasticaToModelTransformer;
 use Doctrine\ORM\Query;
 
 use Elastica\Document;
 use FOS\ElasticaBundle\Transformer\ModelToElasticaTransformerInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class UserToElasticaTransformer implements ModelToElasticaTransformerInterface
 {
@@ -50,6 +52,10 @@ class UserToElasticaTransformer implements ModelToElasticaTransformerInterface
         $publishedAt = $user->getPublishedAt();
         $publishedAt = $publishedAt ? $publishedAt->format('c'):null;*/
 
+        $carbon = new Carbon();
+
+        $carbon = Carbon::instance($user->getDateAdded());
+
         $values = array(
             'userId'         => $user->getUserId(),
             'contactNumber'  => $user->getContactNumber(),
@@ -57,7 +63,8 @@ class UserToElasticaTransformer implements ModelToElasticaTransformerInterface
             'lastName'       => $user->getLastName(),
             'email'          => $user->getEmail(),
             'isActive'       => $user->getIsActive(),
-            'dateAdded'      => $user->getDateAdded(),
+            'dateAdded'      => $carbon->toIso8601String(),
+            'products'       => $user->getFlattendProducts(),
             //''
         );
 

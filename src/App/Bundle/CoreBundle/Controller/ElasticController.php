@@ -37,7 +37,7 @@ class ElasticController extends Controller
 
     public function searchAction(Request $request)
     {
-        $firstname = $request->get('query','jon');
+        $firstname = $request->get('query','firstname');
         $date = new Carbon();
         $userSearch = new UserSearch();
         $userSearch->setFirstName($firstname);

@@ -2,6 +2,13 @@ App\Bundle\CoreBundle\Entity\InventoryRoom:
     type: entity
     table: inventory_room
     repositoryClass: App\Bundle\CoreBundle\Repository\InventoryRoomRepository
+    inheritanceType: JOINED
+    discriminatorColumn:
+        name: discriminator
+        type: string
+    discriminatorMap:
+        inventory_room: InventoryRoom
+        inventory_room_attributes: InventoryRoomAttribute
     fields:
         roomType:
             type: string

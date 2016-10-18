@@ -1,0 +1,9 @@
+App\Bundle\CoreBundle\Entity\CommentCountry:
+    type: entity
+    manyToOne:
+        source:
+            targetEntity: Country
+            joinColumn:
+                name: table_id
+                referencedColumnName: country_id
+            orphanRemoval: false

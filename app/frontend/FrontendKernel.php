@@ -16,6 +16,7 @@ class FrontendKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             //odm
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
@@ -30,6 +31,7 @@ class FrontendKernel extends Kernel
             new Snc\RedisBundle\SncRedisBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            //new Netpositive\DiscriminatorMapBundle\NetpositiveDiscriminatorMapBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

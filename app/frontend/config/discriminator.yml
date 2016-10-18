@@ -1,0 +1,7 @@
+netpositive_discriminator_map:
+    discriminator_map:
+        content:
+            entity: App\Bundle\CoreBundle\Entity\Inventory
+            children:
+                course: App\Bundle\CoreBundle\Entity\InventoryRoom
+                #phonebook_entry: University\CmsBundle\Entity\Content\PhonebookEntry

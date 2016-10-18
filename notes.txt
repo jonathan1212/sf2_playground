@@ -137,3 +137,6 @@ gmail smtp swiftmailer
 ======================
 https://accounts.google.com/b/0/UnlockCaptcha
 
+
+ f_c doctrine:cache:clear-result
+ f_c doctrine:cache:clear-query

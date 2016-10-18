@@ -49,6 +49,9 @@ app_lablogitem_routing:
 app_inventory_routing:
     resource: "routing/inventory.yml"
 
+app_comment_routing:
+    resource: "routing/comment.yml"
+
 app_core_homepage:
     path:     /hello/{name}
     defaults: { _controller: AppCoreBundle:Default:index }

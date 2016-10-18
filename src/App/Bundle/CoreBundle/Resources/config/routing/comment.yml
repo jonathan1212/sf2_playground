@@ -1,0 +1,5 @@
+comment_index:
+    path:     /comment
+    defaults: { _controller: "AppCoreBundle:Comment:index" }
+
+ 

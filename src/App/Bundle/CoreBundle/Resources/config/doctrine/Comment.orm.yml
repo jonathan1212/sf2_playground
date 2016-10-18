@@ -1,0 +1,31 @@
+App\Bundle\CoreBundle\Entity\Comment:
+    type: entity
+    table: comment
+    repositoryClass: App\Bundle\CoreBundle\Repository\CommentRepository
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: discriminator
+        type: string
+    discriminatorMap:
+        comment: Comment
+        yiproduct_comment: CommentYiProduct
+        country_comment: CommentCountry
+    id:
+        comment_id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: comment_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        comment:
+            length: 255
+            options:
+                default: ''
+        reason:
+            length: 255
+            options:
+                default: ''

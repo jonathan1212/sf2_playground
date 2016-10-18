@@ -6,6 +6,7 @@ imports:
     - { resource: services.yml }
     - { resource: fos_oauth_server.yml }
     - { resource: liip_imagine.yml }
+    #- { resource: discriminator.yml }
     
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration

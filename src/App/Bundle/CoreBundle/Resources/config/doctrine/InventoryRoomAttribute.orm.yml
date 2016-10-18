@@ -1,0 +1,12 @@
+App\Bundle\CoreBundle\Entity\InventoryRoomAttribute:
+    type: entity
+    table: inventory_room_attributes
+    repositoryClass: App\Bundle\CoreBundle\Repository\InventoryRoomAttributeRepository
+    fields:
+        attribute:
+            type: string
+            column: attribute
+        value:
+            length: 255
+            options:
+                default: ''

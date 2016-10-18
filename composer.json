@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "": "src/",
-            "SymfonyStandard\\": "app/SymfonyStandard/"
+            "SymfonyStandard\\": "app/SymfonyStandard/",
+            "Netpositive\\DiscriminatorMapBundle\\": "3rdParty/vendor/netpositive/discriminatormap-bundle/Netpositive/DiscriminatorMapBundle/"
          }
     },
     "require": {
@@ -49,7 +50,6 @@
         "firebase/php-jwt": "dev-master",
         "lexik/jwt-authentication-bundle": "dev-master",
         "liip/imagine-bundle": "^1.6"
-
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

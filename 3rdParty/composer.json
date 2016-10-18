@@ -1,0 +1,16 @@
+{
+    "name": "root/3rd-party",
+    "authors": [
+        {
+            "name": "jonathan antivo",
+            "email": "antivojonathan24@gmail.com"
+        }
+    ],
+    "require": {
+        "netpositive/discriminatormap-bundle": "dev-master"
+    },
+
+    "config": {
+        "vendor-dir": "vendor"
+    }
+}

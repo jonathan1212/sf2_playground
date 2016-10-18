@@ -15,6 +15,7 @@
 
 #core
 src/App/Bundle/CoreBundle/Entity/*.php~
+3rdParty/vendor/
 
 #FRONTEND RULES
 /app/frontend/spool/

@@ -39,7 +39,7 @@ fos_elastica:
                             type: nested
                             properties :
                                 productId: ~
-                                dateCreated: ~
+                                #dateCreated: ~
                                 name: ~
                                 description: ~
                         productIds: ~

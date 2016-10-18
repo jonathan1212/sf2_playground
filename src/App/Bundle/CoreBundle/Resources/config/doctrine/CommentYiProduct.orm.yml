@@ -1,0 +1,9 @@
+App\Bundle\CoreBundle\Entity\CommentYiProduct:
+    type: entity
+    manyToOne:
+        source:
+            targetEntity: YiProduct
+            joinColumn:
+                name: table_id
+                referencedColumnName: product_id
+            orphanRemoval: false

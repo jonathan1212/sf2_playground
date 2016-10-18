@@ -1229,6 +1229,21 @@ class User implements AdvancedUserInterface, Serializable
         return $this->products;
     }
 
+    public function getFlattendProducts()
+    {
+        $data = array();
+        foreach ($this->getProducts() as $product) {
+            $data[] = array(
+                        'productId'     => $product->getProductId() ,
+                        //'dateCreated'   => $product->getDateCreated(),
+                        'name'          => $product->getName(),
+                        'description'   => $product->getDescription(),
+                    );
+        }
+
+        return $data;
+    }
+
     public function getProductIds()
     {
         $ids = array();

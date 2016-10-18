@@ -66,4 +66,3 @@ class InventoryRoom extends Inventory
         return $this->rackLimit;
     }
 }
-

@@ -5,6 +5,9 @@ namespace App\Bundle\CoreBundle\Services\Search\Repository;
 use App\Bundle\CoreBundle\Model\UserSearch;
 //use FOS\ElasticaBundle\Repository;
 use App\Bundle\CoreBundle\Services\Search\Repository\ElasticRepository;
+use Elastica\Filter\Nested;
+use Elastica\Query;
+use Elastica\Query\Match;
 
 class UserSearchRepository extends ElasticRepository
 {
@@ -23,7 +26,7 @@ class UserSearchRepository extends ElasticRepository
             $query = new \Elastica\Query\MatchAll();
         }
 
-        $baseQuery = $query;        
+        $baseQuery = $query;
 
         // then we create filters depending on the chosen criterias
         $boolFilter = new \Elastica\Filter\Bool();
@@ -32,6 +35,26 @@ class UserSearchRepository extends ElasticRepository
             Dates filter
             We add this filter only the getIspublished filter is not at "false"
         */
+
+        $query_part = new \Elastica\Query\Bool();
+
+
+
+        /* 
+        $term = new Query\Term();
+        $term->setTerm('name','kaw');
+        $query_part->addShould($nested);*/
+
+        /*$nested = new Nested();
+        //$nested->setQuery($baseQuery);
+        $nested->setPath('products');
+
+        $nested->setFilter(new \Elastica\Filter\Terms('name', ['kaw','hala ka']));
+
+        $boolFilter->addMust($nested);*/
+
+
+
         if($userSearch->getIsActive()
            && null !== $userSearch->getDateFrom()
            && null !== $userSearch->getDateTo())
@@ -51,9 +74,14 @@ class UserSearchRepository extends ElasticRepository
             );
         }
 
+
         $filtered = new \Elastica\Query\Filtered($baseQuery, $boolFilter);
 
         $query = \Elastica\Query::create($filtered);
+
+
+
+
 
         return $query;
         //return $this->find($query);

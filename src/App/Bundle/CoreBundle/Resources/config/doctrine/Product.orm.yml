@@ -57,6 +57,8 @@ App\Bundle\CoreBundle\Entity\Product:
         slug:
             type: string
             length: 1024
+        #brand:
+        #    type: integer
     manyToOne:
         user:
             targetEntity: User
@@ -65,9 +67,9 @@ App\Bundle\CoreBundle\Entity\Product:
                 name: user_id
                 referencedColumnName: user_id
             orphanRemoval: false
-        brand:  # connection from different db
-            targetEntity: App\Bundle\CoreBundle\Entity\Yilinker\Brand
-            joinColumn:
-                name: brand_id
-                referencedColumnName: brand_id
-            orphanRemoval: false
+        # brand:  # connection from different db
+        #     targetEntity: App\Bundle\CoreBundle\Entity\Yilinker\Brand
+        #     joinColumn:
+        #         name: brand_id
+        #         referencedColumnName: brand_id
+        #     orphanRemoval: false
